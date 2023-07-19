@@ -1,5 +1,9 @@
 ﻿using api_for_flutter.Data;
+using api_for_flutter.Models;
+using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
+using api_for_flutter.Models.Features;
+using api_for_flutter.Services.AdsFeatureSerices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Abstractions;
 using System.Collections.Generic;
@@ -10,8 +14,10 @@ namespace api_for_flutter.Services.AdsServices
     public class Service : Iservices
     {
         private readonly ApplicationDBContext _context;
-        public Service(ApplicationDBContext context)
+        private readonly IAdsFeatureService _featureService;
+        public Service(ApplicationDBContext context, IAdsFeatureService adsFeatureService)
         {
+            _featureService = adsFeatureService;
             _context = context;
         }
 
@@ -33,7 +39,29 @@ namespace api_for_flutter.Services.AdsServices
             };
 
             _context.Ads.Add(newAd);
+
+            // Save changes to the database
             await _context.SaveChangesAsync();
+
+            var idads = newAd.IdAds;
+
+            Console.WriteLine("ads id is: " + idads);
+
+            var adsfeature = new CreateAdsFeature();
+            foreach (var item in ad.listFeatures_FeatureValues)
+            {
+                adsfeature = new CreateAdsFeature
+                {
+                    IdAds = idads,
+                    IdDeals = null,
+                    IdFeature = item.FeatureId,
+                    IdFeaturesValues = item.FeatureValueId,
+                    MyValues = null,
+                    Active = 1,
+                };
+                await _featureService.AddAdsFeature(adsfeature);
+            }
+            Console.WriteLine("adsf featur : ", adsfeature);
 
             return newAd;
         }
@@ -80,6 +108,52 @@ namespace api_for_flutter.Services.AdsServices
                 .Include(a => a.Countries)
                 .Include(a => a.Cities)
                 .FirstOrDefault(a => a.IdAds == id);
+        }
+
+
+        // test to find the error 
+        public async Task<CreateAdsFeature> ShowME(CreateAds ad)
+        {
+            var newAd = new Ads
+            {
+                Title = ad.Title,
+                Description = ad.Description,
+                details = ad.details,
+                Price = ad.Price,
+                ImagePrinciple = ad.ImagePrinciple,
+                VideoName = ad.VideoName,
+                IdCateg = ad.IdCateg,
+                IdCountrys = ad.IdCountrys,
+                IdCity = ad.IdCity,
+                Locations = ad.Locations,
+                Active = ad.Active,
+            };
+
+            _context.Ads.Add(newAd);
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            var idads = newAd.IdAds;
+
+            //Console.WriteLine("ads id is: " + idads);
+
+            var adsfeature = new CreateAdsFeature();
+            foreach (var item in ad.listFeatures_FeatureValues)
+            {
+                adsfeature = new CreateAdsFeature
+                {
+                    IdAds = idads,
+                    IdDeals = null,
+                    IdFeature = item.FeatureId,
+                    IdFeaturesValues = item.FeatureValueId,
+                    MyValues = null,
+                    Active = 1,
+                };
+                await _featureService.AddAdsFeature(adsfeature);
+            }
+
+            return adsfeature;
         }
     }
 }

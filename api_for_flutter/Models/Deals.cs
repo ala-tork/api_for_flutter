@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using api_for_flutter.Models.CategoryModels;
+using api_for_flutter.Models.CitiesModels;
 
 namespace api_for_flutter.Models
 {

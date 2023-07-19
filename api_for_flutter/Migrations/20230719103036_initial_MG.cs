@@ -5,7 +5,7 @@
 namespace api_for_flutter.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class initial_MG : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,12 +35,17 @@ namespace api_for_flutter.Migrations
                     title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    idparent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    idparent = table.Column<int>(type: "int", nullable: true),
                     Active = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.IdCateg);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_idparent",
+                        column: x => x.idparent,
+                        principalTable: "Categories",
+                        principalColumn: "IdCateg");
                 });
 
             migrationBuilder.CreateTable(
@@ -61,6 +66,29 @@ namespace api_for_flutter.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Features",
+                columns: table => new
+                {
+                    IdF = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    idCategory = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Features", x => x.IdF);
+                    table.ForeignKey(
+                        name: "FK_Features_Categories_idCategory",
+                        column: x => x.idCategory,
+                        principalTable: "Categories",
+                        principalColumn: "IdCateg",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -77,6 +105,27 @@ namespace api_for_flutter.Migrations
                         column: x => x.IdCountry,
                         principalTable: "Countries",
                         principalColumn: "IdCountrys",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FeaturesValues",
+                columns: table => new
+                {
+                    IdFv = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    IdF = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeaturesValues", x => x.IdFv);
+                    table.ForeignKey(
+                        name: "FK_FeaturesValues_Features_IdF",
+                        column: x => x.IdF,
+                        principalTable: "Features",
+                        principalColumn: "IdF",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -167,6 +216,44 @@ namespace api_for_flutter.Migrations
                         principalColumn: "IdCountrys");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AdsFeatures",
+                columns: table => new
+                {
+                    IdAF = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdAds = table.Column<int>(type: "int", nullable: true),
+                    IdDeals = table.Column<int>(type: "int", nullable: true),
+                    IdFeature = table.Column<int>(type: "int", nullable: true),
+                    IdFeaturesValues = table.Column<int>(type: "int", nullable: true),
+                    MyValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdsFeatures", x => x.IdAF);
+                    table.ForeignKey(
+                        name: "FK_AdsFeatures_Ads_IdAds",
+                        column: x => x.IdAds,
+                        principalTable: "Ads",
+                        principalColumn: "IdAds");
+                    table.ForeignKey(
+                        name: "FK_AdsFeatures_Deals_IdDeals",
+                        column: x => x.IdDeals,
+                        principalTable: "Deals",
+                        principalColumn: "IdDeal");
+                    table.ForeignKey(
+                        name: "FK_AdsFeatures_FeaturesValues_IdFeaturesValues",
+                        column: x => x.IdFeaturesValues,
+                        principalTable: "FeaturesValues",
+                        principalColumn: "IdFv");
+                    table.ForeignKey(
+                        name: "FK_AdsFeatures_Features_IdFeature",
+                        column: x => x.IdFeature,
+                        principalTable: "Features",
+                        principalColumn: "IdF");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Ads_IdCateg",
                 table: "Ads",
@@ -181,6 +268,31 @@ namespace api_for_flutter.Migrations
                 name: "IX_Ads_IdCountrys",
                 table: "Ads",
                 column: "IdCountrys");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdsFeatures_IdAds",
+                table: "AdsFeatures",
+                column: "IdAds");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdsFeatures_IdDeals",
+                table: "AdsFeatures",
+                column: "IdDeals");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdsFeatures_IdFeature",
+                table: "AdsFeatures",
+                column: "IdFeature");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdsFeatures_IdFeaturesValues",
+                table: "AdsFeatures",
+                column: "IdFeaturesValues");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_idparent",
+                table: "Categories",
+                column: "idparent");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_IdCountry",
@@ -206,11 +318,24 @@ namespace api_for_flutter.Migrations
                 name: "IX_Deals_IdCountrys",
                 table: "Deals",
                 column: "IdCountrys");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Features_idCategory",
+                table: "Features",
+                column: "idCategory");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeaturesValues_IdF",
+                table: "FeaturesValues",
+                column: "IdF");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AdsFeatures");
+
             migrationBuilder.DropTable(
                 name: "Ads");
 
@@ -218,16 +343,22 @@ namespace api_for_flutter.Migrations
                 name: "Deals");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                name: "FeaturesValues");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Cities");
 
             migrationBuilder.DropTable(
+                name: "Features");
+
+            migrationBuilder.DropTable(
                 name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

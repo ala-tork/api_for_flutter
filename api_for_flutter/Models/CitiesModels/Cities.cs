@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace api_for_flutter.Models
+namespace api_for_flutter.Models.CitiesModels
 {
     public class Cities
     {
-        [Key] 
+        [Key]
         public int IdCity { get; set; }
         public string Title { get; set; }
         public int IdCountry { get; set; }

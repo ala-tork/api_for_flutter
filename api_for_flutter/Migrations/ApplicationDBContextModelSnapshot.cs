@@ -22,7 +22,42 @@ namespace api_for_flutter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("api_for_flutter.Models.Ads", b =>
+            modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
+                {
+                    b.Property<int>("IdAF")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAF"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdAds")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDeals")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdFeature")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdFeaturesValues")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MyValues")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdAF");
+
+                    b.HasIndex("IdFeature");
+
+                    b.HasIndex("IdFeaturesValues");
+
+                    b.ToTable("AdsFeatures");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.AdsModels.Ads", b =>
                 {
                     b.Property<int>("IdAds")
                         .ValueGeneratedOnAdd()
@@ -107,7 +142,7 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Categories", b =>
+            modelBuilder.Entity("api_for_flutter.Models.CategoryModels.Categories", b =>
                 {
                     b.Property<int>("IdCateg")
                         .ValueGeneratedOnAdd()
@@ -140,7 +175,7 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Cities", b =>
+            modelBuilder.Entity("api_for_flutter.Models.CitiesModels.Cities", b =>
                 {
                     b.Property<int>("IdCity")
                         .ValueGeneratedOnAdd()
@@ -267,15 +302,87 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Deals");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Ads", b =>
+            modelBuilder.Entity("api_for_flutter.Models.Features.Features", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.Categories", "Categories")
+                    b.Property<int>("IdF")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdF"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idCategory")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdF");
+
+                    b.HasIndex("idCategory");
+
+                    b.ToTable("Features");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.FeaturesValuesModel.FeaturesValues", b =>
+                {
+                    b.Property<int>("IdFv")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFv"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdF")
+                        .HasColumnType("int");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdFv");
+
+                    b.HasIndex("IdF");
+
+                    b.ToTable("FeaturesValues");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.Features.Features", "features")
+                        .WithMany()
+                        .HasForeignKey("IdFeature");
+
+                    b.HasOne("api_for_flutter.Models.FeaturesValuesModel.FeaturesValues", "FeaturesValues")
+                        .WithMany()
+                        .HasForeignKey("IdFeaturesValues");
+
+                    b.Navigation("FeaturesValues");
+
+                    b.Navigation("features");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.AdsModels.Ads", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Categories")
                         .WithMany()
                         .HasForeignKey("IdCateg")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Cities", "Cities")
+                    b.HasOne("api_for_flutter.Models.CitiesModels.Cities", "Cities")
                         .WithMany()
                         .HasForeignKey("IdCity")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -294,14 +401,14 @@ namespace api_for_flutter.Migrations
                     b.Navigation("Countries");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Categories", b =>
+            modelBuilder.Entity("api_for_flutter.Models.CategoryModels.Categories", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.Categories", null)
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", null)
                         .WithMany("Children")
                         .HasForeignKey("idparent");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Cities", b =>
+            modelBuilder.Entity("api_for_flutter.Models.CitiesModels.Cities", b =>
                 {
                     b.HasOne("api_for_flutter.Models.Countries", "Countries")
                         .WithMany()
@@ -320,13 +427,13 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Categories", "Categories")
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Categories")
                         .WithMany()
                         .HasForeignKey("IdCateg")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Cities", "Cities")
+                    b.HasOne("api_for_flutter.Models.CitiesModels.Cities", "Cities")
                         .WithMany()
                         .HasForeignKey("IdCity")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -347,7 +454,29 @@ namespace api_for_flutter.Migrations
                     b.Navigation("Countries");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Categories", b =>
+            modelBuilder.Entity("api_for_flutter.Models.Features.Features", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Categorie")
+                        .WithMany()
+                        .HasForeignKey("idCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categorie");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.FeaturesValuesModel.FeaturesValues", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.Features.Features", "features")
+                        .WithMany()
+                        .HasForeignKey("IdF")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("features");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.CategoryModels.Categories", b =>
                 {
                     b.Navigation("Children");
                 });

@@ -16,9 +16,9 @@ namespace api_for_flutter.Services.CategoryServices
                 title = category.title,
                 description = category.description,
                 image = category.image,
-                idparent = category.idparent,
                 Active = category.Active
             };
+            if(category.idparent != null && category.idparent!=0) { categ.idparent = category.idparent; }
             _context.Categories.Add(categ);
             _context.SaveChanges();
 

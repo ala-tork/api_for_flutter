@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using api_for_flutter.Models.CategoryModels;
+using api_for_flutter.Models.CitiesModels;
+using api_for_flutter.Models.FeaturesValuesModel;
 
 namespace api_for_flutter.Models.AdsModels
 {

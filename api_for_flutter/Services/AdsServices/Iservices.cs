@@ -1,4 +1,5 @@
-﻿using api_for_flutter.Models.AdsModels;
+﻿using api_for_flutter.Models.AdsFeaturesModel;
+using api_for_flutter.Models.AdsModels;
 
 namespace api_for_flutter.Services.AdsServices
 {
@@ -9,5 +10,6 @@ namespace api_for_flutter.Services.AdsServices
         Task<Ads> CreateAdd(CreateAds ad);
         Ads GetAdById(int id);
         int NbrAds();
+        Task<CreateAdsFeature> ShowME(CreateAds ad);
     }
 }
