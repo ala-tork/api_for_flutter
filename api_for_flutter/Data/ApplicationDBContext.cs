@@ -3,8 +3,10 @@ using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
+using api_for_flutter.Models.CountriesModel;
 using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesValuesModel;
+using api_for_flutter.Models.ImagesModel;
 using Azure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,7 @@ namespace api_for_flutter.Data
         public DbSet<Features> Features { get; set; }
         public DbSet<FeaturesValues> FeaturesValues { get; set; }
         public DbSet<AdsFeatures> AdsFeatures { get; set; }
+        public DbSet<Images> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -92,6 +95,7 @@ namespace api_for_flutter.Data
                 .HasOne(af => af.Deals)
                 .WithMany()
                 .HasForeignKey(af => af.IdDeals);
+
                 //relation with Features*/
             modelBuilder.Entity<AdsFeatures>()
                 .HasOne(af => af.features)
@@ -102,6 +106,12 @@ namespace api_for_flutter.Data
                 .HasOne(af => af.FeaturesValues)
                 .WithMany()
                 .HasForeignKey(af => af.IdFeaturesValues);
+
+            // Images 
+            modelBuilder.Entity<Images>()
+                .HasOne(i => i.Ads)
+                .WithMany()
+                .HasForeignKey(i => i.IdAds);
 
 
 

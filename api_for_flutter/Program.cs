@@ -6,6 +6,8 @@ using api_for_flutter.Services.CitiesServices;
 using api_for_flutter.Services.CountryServices;
 using api_for_flutter.Services.FeatuesServices;
 using api_for_flutter.Services.FeatureValueServices;
+using api_for_flutter.Services.Iimages_Services;
+using api_for_flutter.Services.Images_Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +32,7 @@ builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IFeaturesService, FeaturesService>();
 builder.Services.AddScoped<IFeatureValueService, FeatureValueService>();
 builder.Services.AddScoped<IAdsFeatureService, AdsFeatureService>();
+builder.Services.AddScoped<IImageService, imagesService>();
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
+using api_for_flutter.Models.CountriesModel;
 
 namespace api_for_flutter.Models
 {
@@ -17,8 +18,8 @@ namespace api_for_flutter.Models
        public int Quantity { get; set; }
 
        //public int IdPricesDelevery { get; set; }
-       //public string DatePublication { get; set; }
-       //public string DateEND { get; set; }
+       public string DatePublication { get; set; }
+       public string DateEND { get; set; }
        public string ImagePrinciple { get; set; }
        public string? VideoName { get; set; }
         public int IdCateg { get; set; }

@@ -56,7 +56,7 @@ namespace api_for_flutter.Services.FeatureValueServices
         public async Task<List<FeaturesValues>> GetFeaturesValuesByFeature( int idf)
         {
             var featuresValues = await _dbContext.FeaturesValues
-                        .Where( f => f.IdF == idf).ToListAsync();
+                        .Where( f => f.IdF == idf).Include(f=>f.features).ToListAsync();
             return featuresValues;
         }
 

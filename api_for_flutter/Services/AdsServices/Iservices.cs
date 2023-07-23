@@ -10,6 +10,6 @@ namespace api_for_flutter.Services.AdsServices
         Task<Ads> CreateAdd(CreateAds ad);
         Ads GetAdById(int id);
         int NbrAds();
-        Task<CreateAdsFeature> ShowME(CreateAds ad);
+       // Task<CreateAdsFeature> ShowME(CreateAds ad);
     }
 }

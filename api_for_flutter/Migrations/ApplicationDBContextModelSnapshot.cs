@@ -72,6 +72,9 @@ namespace api_for_flutter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("IdBoost")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdCateg")
                         .HasColumnType("int");
 
@@ -81,8 +84,10 @@ namespace api_for_flutter.Migrations
                     b.Property<int>("IdCountrys")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagePrinciple")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Locations")
@@ -197,7 +202,7 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Countries", b =>
+            modelBuilder.Entity("api_for_flutter.Models.CountriesModel.Countries", b =>
                 {
                     b.Property<int>("IdCountrys")
                         .ValueGeneratedOnAdd()
@@ -238,6 +243,14 @@ namespace api_for_flutter.Migrations
 
                     b.Property<int>("Active")
                         .HasColumnType("int");
+
+                    b.Property<string>("DateEND")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatePublication")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -359,6 +372,40 @@ namespace api_for_flutter.Migrations
                     b.ToTable("FeaturesValues");
                 });
 
+            modelBuilder.Entity("api_for_flutter.Models.ImagesModel.Images", b =>
+                {
+                    b.Property<int>("IdImage")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdImage"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdAds")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDeals")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdProduct")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdImage");
+
+                    b.HasIndex("IdAds");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
                 {
                     b.HasOne("api_for_flutter.Models.Features.Features", "features")
@@ -388,7 +435,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Countries", "Countries")
+                    b.HasOne("api_for_flutter.Models.CountriesModel.Countries", "Countries")
                         .WithMany()
                         .HasForeignKey("IdCountrys")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -410,7 +457,7 @@ namespace api_for_flutter.Migrations
 
             modelBuilder.Entity("api_for_flutter.Models.CitiesModels.Cities", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.Countries", "Countries")
+                    b.HasOne("api_for_flutter.Models.CountriesModel.Countries", "Countries")
                         .WithMany()
                         .HasForeignKey("IdCountry")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -439,7 +486,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Countries", "Countries")
+                    b.HasOne("api_for_flutter.Models.CountriesModel.Countries", "Countries")
                         .WithMany()
                         .HasForeignKey("IdCountrys")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -474,6 +521,15 @@ namespace api_for_flutter.Migrations
                         .IsRequired();
 
                     b.Navigation("features");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.ImagesModel.Images", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.AdsModels.Ads", "Ads")
+                        .WithMany()
+                        .HasForeignKey("IdAds");
+
+                    b.Navigation("Ads");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.CategoryModels.Categories", b =>

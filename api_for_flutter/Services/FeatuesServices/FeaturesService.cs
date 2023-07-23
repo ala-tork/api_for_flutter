@@ -1,6 +1,7 @@
 ﻿using api_for_flutter.Data;
 using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesModels;
+using api_for_flutter.Services.FeatureValueServices;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 
@@ -9,8 +10,10 @@ namespace api_for_flutter.Services.FeatuesServices
     public class FeaturesService : IFeaturesService
     {
         protected readonly ApplicationDBContext _dbContext;
-        public FeaturesService(ApplicationDBContext dbContext)
+        protected readonly IFeatureValueService _featuresValueService;
+        public FeaturesService(ApplicationDBContext dbContext,IFeatureValueService featureValue)
         {
+            _featuresValueService = featureValue;
             _dbContext = dbContext;
         }
 
@@ -45,5 +48,7 @@ namespace api_for_flutter.Services.FeatuesServices
 
             return featuresList;
         }
+
+
     }
 }

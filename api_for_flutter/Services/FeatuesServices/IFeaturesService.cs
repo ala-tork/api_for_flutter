@@ -8,5 +8,6 @@ namespace api_for_flutter.Services.FeatuesServices
         Task<Features> AddFeature(CreateFeature feature);
         Task<List<Features>> GetAllFeatures();
         Task<List<Features>> GetAllFeaturesByCategory(int idcategory);
+        //Task<List<FeaturesWithListValues>> GetAllFeaturesWithValues();
     }
 }

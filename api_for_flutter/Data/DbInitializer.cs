@@ -1,8 +1,7 @@
-﻿
-using api_for_flutter.Models;
-using api_for_flutter.Models.AdsModels;
+﻿using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
+using api_for_flutter.Models.CountriesModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api_for_flutter.Data

@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace api_for_flutter.Models
+﻿namespace api_for_flutter.Models.CountriesModel
 {
-    public class Countries
+    public class CreateCountry
     {
-        [Key]
-        public int IdCountrys { get; set; }
         public string Title { get; set; }
         public string? Flag { get; set; }
         public string Code { get; set; }

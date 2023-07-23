@@ -4,10 +4,12 @@ using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.Features;
 using api_for_flutter.Services.AdsFeatureSerices;
+using api_for_flutter.Services.Images_Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Abstractions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
 
 namespace api_for_flutter.Services.AdsServices
 {
@@ -15,6 +17,7 @@ namespace api_for_flutter.Services.AdsServices
     {
         private readonly ApplicationDBContext _context;
         private readonly IAdsFeatureService _featureService;
+        private readonly IImageService _imageService;
         public Service(ApplicationDBContext context, IAdsFeatureService adsFeatureService)
         {
             _featureService = adsFeatureService;
@@ -29,12 +32,14 @@ namespace api_for_flutter.Services.AdsServices
                 Description = ad.Description,
                 details = ad.details,
                 Price = ad.Price,
+                IdUser = ad.IdUser,
                 ImagePrinciple = ad.ImagePrinciple,
                 VideoName = ad.VideoName,
                 IdCateg = ad.IdCateg,
                 IdCountrys = ad.IdCountrys,
                 IdCity = ad.IdCity,
                 Locations = ad.Locations,
+                IdBoost = ad.IdBoost,
                 Active = ad.Active,
             };
 
@@ -43,28 +48,28 @@ namespace api_for_flutter.Services.AdsServices
             // Save changes to the database
             await _context.SaveChangesAsync();
 
-            var idads = newAd.IdAds;
+            //var idads = newAd.IdAds;
 
-            Console.WriteLine("ads id is: " + idads);
-
-            var adsfeature = new CreateAdsFeature();
-            foreach (var item in ad.listFeatures_FeatureValues)
-            {
-                adsfeature = new CreateAdsFeature
-                {
-                    IdAds = idads,
-                    IdDeals = null,
-                    IdFeature = item.FeatureId,
-                    IdFeaturesValues = item.FeatureValueId,
-                    MyValues = null,
-                    Active = 1,
-                };
-                await _featureService.AddAdsFeature(adsfeature);
-            }
-            Console.WriteLine("adsf featur : ", adsfeature);
+            //foreach (var item in ad.listFeatures_FeatureValues)
+            //{
+            //    var adsfeature = new CreateAdsFeature 
+            //    {
+            //        IdAds = idads,
+            //        IdDeals = null,
+            //        IdFeature = item.FeatureId,
+            //        IdFeaturesValues = item.FeatureValueId,
+            //        MyValues = null,
+            //        Active = 1,
+            //    };
+            //    await _featureService.AddAdsFeature(adsfeature);
+            //    await _context.SaveChangesAsync();
+            //}
+            //await _context.SaveChangesAsync();
 
             return newAd;
         }
+
+
 
 
         public List<Ads> GetAds()
@@ -112,48 +117,50 @@ namespace api_for_flutter.Services.AdsServices
 
 
         // test to find the error 
-        public async Task<CreateAdsFeature> ShowME(CreateAds ad)
-        {
-            var newAd = new Ads
-            {
-                Title = ad.Title,
-                Description = ad.Description,
-                details = ad.details,
-                Price = ad.Price,
-                ImagePrinciple = ad.ImagePrinciple,
-                VideoName = ad.VideoName,
-                IdCateg = ad.IdCateg,
-                IdCountrys = ad.IdCountrys,
-                IdCity = ad.IdCity,
-                Locations = ad.Locations,
-                Active = ad.Active,
-            };
+        //public async Task<CreateAdsFeature> ShowME(CreateAds ad)
+        //{
+        //    var newAd = new Ads
+        //    {
+        //        Title = ad.Title,
+        //        Description = ad.Description,
+        //        details = ad.details,
+        //        Price = ad.Price,
+        //        IdUser = ad.IdUser,
+        //        ImagePrinciple = ad.ImagePrinciple,
+        //        VideoName = ad.VideoName,
+        //        IdCateg = ad.IdCateg,
+        //        IdCountrys = ad.IdCountrys,
+        //        IdCity = ad.IdCity,
+        //        Locations = ad.Locations,
+        //        IdBoost = ad.IdBoost,
+        //        Active = ad.Active,
+        //    };
 
-            _context.Ads.Add(newAd);
+        //    _context.Ads.Add(newAd);
 
-            // Save changes to the database
-            await _context.SaveChangesAsync();
+        //    // Save changes to the database
+        //    await _context.SaveChangesAsync();
 
-            var idads = newAd.IdAds;
+        //    var idads = newAd.IdAds;
 
-            //Console.WriteLine("ads id is: " + idads);
+        //    //Console.WriteLine("ads id is: " + idads);
 
-            var adsfeature = new CreateAdsFeature();
-            foreach (var item in ad.listFeatures_FeatureValues)
-            {
-                adsfeature = new CreateAdsFeature
-                {
-                    IdAds = idads,
-                    IdDeals = null,
-                    IdFeature = item.FeatureId,
-                    IdFeaturesValues = item.FeatureValueId,
-                    MyValues = null,
-                    Active = 1,
-                };
-                await _featureService.AddAdsFeature(adsfeature);
-            }
+        //    var adsfeature = new CreateAdsFeature();
+        //    foreach (var item in ad.listFeatures_FeatureValues)
+        //    {
+        //        adsfeature = new CreateAdsFeature
+        //        {
+        //            IdAds = idads,
+        //            IdDeals = null,
+        //            IdFeature = item.FeatureId,
+        //            IdFeaturesValues = item.FeatureValueId,
+        //            MyValues = null,
+        //            Active = 1,
+        //        };
+        //        await _featureService.AddAdsFeature(adsfeature);
+        //    }
 
-            return adsfeature;
-        }
+        //    return adsfeature;
+        //}
     }
 }
