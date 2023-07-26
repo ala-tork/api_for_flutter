@@ -10,17 +10,15 @@ using Microsoft.IdentityModel.Abstractions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace api_for_flutter.Services.AdsServices
 {
     public class Service : Iservices
     {
         private readonly ApplicationDBContext _context;
-        private readonly IAdsFeatureService _featureService;
-        private readonly IImageService _imageService;
-        public Service(ApplicationDBContext context, IAdsFeatureService adsFeatureService)
+        public Service(ApplicationDBContext context)
         {
-            _featureService = adsFeatureService;
             _context = context;
         }
 
@@ -44,27 +42,7 @@ namespace api_for_flutter.Services.AdsServices
             };
 
             _context.Ads.Add(newAd);
-
-            // Save changes to the database
             await _context.SaveChangesAsync();
-
-            //var idads = newAd.IdAds;
-
-            //foreach (var item in ad.listFeatures_FeatureValues)
-            //{
-            //    var adsfeature = new CreateAdsFeature 
-            //    {
-            //        IdAds = idads,
-            //        IdDeals = null,
-            //        IdFeature = item.FeatureId,
-            //        IdFeaturesValues = item.FeatureValueId,
-            //        MyValues = null,
-            //        Active = 1,
-            //    };
-            //    await _featureService.AddAdsFeature(adsfeature);
-            //    await _context.SaveChangesAsync();
-            //}
-            //await _context.SaveChangesAsync();
 
             return newAd;
         }
@@ -88,22 +66,21 @@ namespace api_for_flutter.Services.AdsServices
             return n;
         }
 
-        public List<Ads> ofset(int page = 0)
+        public List<Ads> ShowMore(int page = 0)
         {
             int pageSize = 4;
 
             var query = _context.Ads.AsQueryable();
 
-            int nbAds = query.Count();
-            int nbPages = (int)Math.Ceiling((double)nbAds / pageSize);
-
-            var ads = query.Skip(page * pageSize)
-                           .Take(pageSize)
-                           .Include(a => a.Categories)
-                            .Include(a => a.Countries)
-                            .Include(a => a.Cities)
-                           .ToList();
-            return ads;
+                var ads = query.OrderBy(a => a.IdAds) 
+                               .Skip(page * pageSize)
+                               .Take(pageSize)
+                               .Include(a => a.Categories)
+                               .Include(a => a.Countries)
+                               .Include(a => a.Cities)
+                               .ToList();
+                return ads;
+            
         }
 
         public Ads GetAdById(int id)
@@ -113,6 +90,67 @@ namespace api_for_flutter.Services.AdsServices
                 .Include(a => a.Countries)
                 .Include(a => a.Cities)
                 .FirstOrDefault(a => a.IdAds == id);
+        }
+
+        public async Task<Ads> DeleteAdsById(int id)
+        {
+            var res = await _context.Ads.SingleOrDefaultAsync(a => a.IdAds == id);
+
+            if (res != null)
+            {
+                _context.Ads.Remove(res);
+                await _context.SaveChangesAsync();
+            }
+
+            return res;
+        }
+
+        public List<Ads> ShowMoreByIdUser(int iduser,int page)
+        {
+            int pageSize = 4;
+
+            var query = _context.Ads.AsQueryable();
+
+            var ads = query.Where(a => a.IdUser == iduser)
+               .OrderBy(a => a.IdAds)
+               .Skip(page * pageSize)
+               .Take(pageSize)
+               .Include(a => a.Categories)
+               .Include(a => a.Countries)
+               .Include(a => a.Cities)
+               .ToList();
+            return ads;
+        }
+
+        public int NbrAdsByIdUser( int iduser)
+        {
+            var res = _context.Ads.Where(a => a.IdUser == iduser).Count();
+            return res;
+        }
+
+        public async Task<Ads> updateAds(CreateAds ads, int id)
+        {
+            var ad = GetAdById(id);
+            if (ad != null)
+            {
+                ad.Title = ads.Title;
+                ad.Description = ads.Description;
+                ad.details = ads.details;
+                ad.IdCity = ads.IdCity;
+                ad.IdCateg = ads.IdCateg;
+                ad.IdCountrys = ads.IdCountrys;
+                ad.IdUser = ads.IdUser;
+                ad.ImagePrinciple = ads.ImagePrinciple;
+                ad.Locations = ads.Locations;
+                ad.Price = ads.Price;
+                ad.VideoName = ads.VideoName;
+
+                _context.Entry(ad).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return ad;
+            }
+            else
+                return null;
         }
 
 

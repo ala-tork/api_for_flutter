@@ -94,9 +94,8 @@ namespace api_for_flutter.Data
             modelBuilder.Entity<AdsFeatures>()
                 .HasOne(af => af.Deals)
                 .WithMany()
-                .HasForeignKey(af => af.IdDeals);
+                .HasForeignKey(af => af.IdDeals);*/
 
-                //relation with Features*/
             modelBuilder.Entity<AdsFeatures>()
                 .HasOne(af => af.features)
                 .WithMany()

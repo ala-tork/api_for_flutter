@@ -43,13 +43,27 @@ namespace api_for_flutter.Controllers
 
         [HttpGet("ShowMore")]
         public IActionResult ShowMore(int page) {
-            var data = _iservices.ofset(page).ToList();
+            var data = _iservices.ShowMore(page).ToList();
             return Ok(data);
         }
+
+        [HttpGet("ShowMoreByUser")]
+        public IActionResult ShowMoreByUser(int iduser,int page)
+        {
+            var data = _iservices.ShowMoreByIdUser(iduser,page).ToList();
+            return Ok(data);
+        }
+
         [HttpGet("NbrAds")]
         public IActionResult NbrAds()
         {
             return Ok(_iservices.NbrAds());
+        }
+
+        [HttpGet("NbrAdsByUser")]
+        public IActionResult NbrAdsByIdUser(int iduser)
+        {
+            return Ok(_iservices.NbrAdsByIdUser(iduser));
         }
 
         [HttpGet("/Ad/{id}")]
@@ -79,16 +93,41 @@ namespace api_for_flutter.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAdsById(int id)
+        {
+            var res = await _iservices.DeleteAdsById(id);
+            if(res != null)
+            {
+                return Ok(res);
+            }
+            return BadRequest("ther is no ads With this id ");
+        }
 
-    
-
-
-    //[HttpPost("test")]
-    //    public async Task<IActionResult> test(CreateAds adModel)
-    //    {
-    //        var res = await _iservices.ShowME(adModel);
-    //        return Ok(res);
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Ads>> UpdateAds(int id, CreateAds updateAds)
+        {
             
-    //    }
+            
+                var res = await _iservices.updateAds(updateAds, id);
+                if (res != null)
+                {
+                    return Ok(res);
+                }
+                return NotFound("There is no ad with this id");
+            
+            return BadRequest(ModelState);
+        }
+
+
+
+
+        //[HttpPost("test")]
+        //    public async Task<IActionResult> test(CreateAds adModel)
+        //    {
+        //        var res = await _iservices.ShowME(adModel);
+        //        return Ok(res);
+
+        //    }
     }
 }

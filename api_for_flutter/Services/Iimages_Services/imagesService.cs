@@ -13,7 +13,7 @@ namespace api_for_flutter.Services.Iimages_Services
 
 
 
-        public int SaveImages(IFormFile imageFile)
+        public Images SaveImages(IFormFile imageFile)
         {
             string imageUrl = SaveImageAndGetUrl(imageFile);
             var img = new Images
@@ -26,7 +26,7 @@ namespace api_for_flutter.Services.Iimages_Services
 
             _dbcontext.SaveChanges();
 
-            return img.IdImage;
+            return img;
         }
 
 
@@ -41,7 +41,8 @@ namespace api_for_flutter.Services.Iimages_Services
                 imageFile.CopyTo(fileStream);
             }
 
-            return "https://localhost:7058/Assets/images/" + uniqueFileName;
+            // return "https://localhost:7058/Assets/images/" + uniqueFileName;
+            return "/Assets/images/" + uniqueFileName;
         }
 
         public Images UpdateImages(int idads,int idImages)
@@ -56,6 +57,30 @@ namespace api_for_flutter.Services.Iimages_Services
             }
             else
                 return null;
+        }
+
+        public Images DeleteImages(int idAds)
+        {
+            
+            var imagesToDelete = _dbcontext.Images.Where(img => img.IdAds == idAds).ToList();
+
+            if (imagesToDelete.Count > 0)
+            {
+                
+                var imageToDelete = imagesToDelete[0];
+                _dbcontext.Images.RemoveRange(imagesToDelete);
+                _dbcontext.SaveChanges();
+                return imageToDelete;
+            }
+
+            return null;
+        }
+
+        public List<Images> GetImagesByIdAds(int idAds)
+        {
+            var images = _dbcontext.Images.Where(img => img.IdAds == idAds).ToList();
+
+            return images;
         }
     }
 }

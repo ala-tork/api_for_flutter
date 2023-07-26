@@ -25,5 +25,40 @@ namespace api_for_flutter.Controllers
             var x= await _service.AddAdsFeature(createAdsFeature);
             return Ok(x);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAdsFeaturesByIdAds(int idAds)
+        {
+            
+            var res = await _service.GetAllAdsFeatures(idAds);
+            if(res!=null)
+            {
+                return Ok(res);
+            }
+            return BadRequest("ther is no Ads Features for this Ads ID");
+            
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAdsFeaturesByAdsId(int idAds)
+        {
+            var res = await _service.DeleteAdsFeatures(idAds);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return BadRequest("adsFeatures Not Found ");
+            
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAdsFeatures(CreateAdsFeature adsFeature,int idAF)
+        {
+            if(adsFeature!=null && idAF != null)
+            {
+                var res = _service.UpdateFeatures(adsFeature, idAF);
+                return Ok(res);
+            }
+            return BadRequest("we cant update this feature Ads");
+        }
     }
 }

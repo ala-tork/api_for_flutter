@@ -6,10 +6,14 @@ namespace api_for_flutter.Services.AdsServices
     public interface Iservices
     {
         List<Ads> GetAds();
-        List<Ads> ofset(int page);
+        public List<Ads> ShowMore(int page = 0);
+        public List<Ads> ShowMoreByIdUser(int iduser,int page = 0);
         Task<Ads> CreateAdd(CreateAds ad);
         Ads GetAdById(int id);
         int NbrAds();
+        int NbrAdsByIdUser(int iduser);
+        Task<Ads> DeleteAdsById(int id);
+        Task<Ads> updateAds(CreateAds ads,int id);
        // Task<CreateAdsFeature> ShowME(CreateAds ad);
     }
 }

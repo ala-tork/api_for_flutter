@@ -36,6 +36,7 @@ namespace api_for_flutter.Services.CategoryServices
             return category;
         }
 
+
         public  Categories GetCategories (int id)
         {
             var categ =   _context.Categories.FirstOrDefault(c=>c.IdCateg == id);

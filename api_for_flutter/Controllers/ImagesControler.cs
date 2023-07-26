@@ -26,5 +26,19 @@ namespace api_for_flutter.Controllers
             var res = _imageService.UpdateImages(idAds, idImage);
             return Ok(res);
         }
+
+        [HttpDelete]
+        public IActionResult DeleteImage(int idAds)
+        {
+            var res = _imageService.DeleteImages(idAds);
+            return Ok(res);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllImagesByAds(int idAds)
+        {
+            var res = _imageService.GetImagesByIdAds(idAds);
+            return Ok(res);
+        }
     }
 }
