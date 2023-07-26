@@ -16,10 +16,8 @@ namespace api_for_flutter.Controllers
     public class AdsController : ControllerBase
     {
         private readonly Iservices _iservices;
-        private readonly IImageService _imageService;
-        public AdsController(Iservices iservices ,ApplicationDBContext context ,IImageService imageService)
+        public AdsController(Iservices iservices )
         {
-            _imageService= imageService;
             _iservices = iservices;
         }
 
