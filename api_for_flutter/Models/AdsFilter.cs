@@ -6,7 +6,9 @@
         public int? IdCity { get; set; }
         public List<int?> IdFeaturesValues { get; set; }
         public int? IdCategory { get; set; }
-        public int PageNumber { get; set; } 
+        public double? MinPrice { get; set; }
+        public double? MaxPrice { get; set; }
+        public int PageNumber { get; set; }
     }
 
 }
