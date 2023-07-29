@@ -55,7 +55,7 @@ namespace api_for_flutter.Controllers
                 filter.PageNumber = 1; 
             }
 
-            var paginatedAds = query.Include(a=>a.Categories).Include(a=>a.Countries).Include(a=>a.Cities)
+            var paginatedAds = query.Include(a=>a.Categories).Include(a=>a.Countries).Include(a=>a.Cities).Where(a=>a.Active==1)
                 .Skip((filter.PageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();

@@ -8,6 +8,7 @@ using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesValuesModel;
 using api_for_flutter.Models.ImagesModel;
 using Azure;
+using CoolApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
@@ -17,6 +18,7 @@ namespace api_for_flutter.Data
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options):base(options) {}
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Ads> Ads { get; set; }
         public DbSet<Deals> Deals { get; set; }
         public DbSet<Categories> Categories { get; set; }

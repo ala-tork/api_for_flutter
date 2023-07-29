@@ -53,7 +53,7 @@ namespace api_for_flutter.Services.AdsServices
         public List<Ads> GetAds()
         {
 
-            var ads = _context.Ads.Include(a => a.Categories)
+            var ads = _context.Ads.Where(a=>a.Active==1).Include(a => a.Categories)
                 .Include(a => a.Countries)
                 .Include(a => a.Cities).ToList();
 
@@ -85,7 +85,7 @@ namespace api_for_flutter.Services.AdsServices
 
         public Ads GetAdById(int id)
         {
-            return _context.Ads
+            return _context.Ads.Where(a => a.Active == 1)
                 .Include(a => a.Categories)
                 .Include(a => a.Countries)
                 .Include(a => a.Cities)
@@ -112,6 +112,7 @@ namespace api_for_flutter.Services.AdsServices
             var query = _context.Ads.AsQueryable();
 
             var ads = query.Where(a => a.IdUser == iduser)
+                .Where(a=>a.Active == 1)
                .OrderBy(a => a.IdAds)
                .Skip(page * pageSize)
                .Take(pageSize)
@@ -124,7 +125,7 @@ namespace api_for_flutter.Services.AdsServices
 
         public int NbrAdsByIdUser( int iduser)
         {
-            var res = _context.Ads.Where(a => a.IdUser == iduser).Count();
+            var res = _context.Ads.Where(a => a.IdUser == iduser).Where(a=>a.Active==1).Count();
             return res;
         }
 

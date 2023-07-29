@@ -36,14 +36,14 @@ namespace api_for_flutter.Services.FeatuesServices
 
         public async Task<List<Features>> GetAllFeatures()
         {
-            var featuresList = await _dbContext.Features.Include(f => f.Categorie).ToListAsync();
+            var featuresList = await _dbContext.Features.Where(f=>f.Active==1).Include(f => f.Categorie).ToListAsync();
             return featuresList;
         }
 
         public async Task<List<Features>> GetAllFeaturesByCategory(int idcategory)
         {
             var featuresList = await _dbContext.Features
-                                              .Where(f => f.idCategory == idcategory)
+                                              .Where(f => f.idCategory == idcategory && f.Active==1)
                                               .ToListAsync();
 
             return featuresList;

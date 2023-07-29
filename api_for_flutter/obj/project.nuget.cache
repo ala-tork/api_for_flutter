@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "OaN5QSqdHK1FOjyhz46CyCLVmbi/s7pZroVAi7PlwNjgmQOTr5+iDNrNUkLR1SYy+3RKyS2i8AtozVKWUU0RvA==",
+  "dgSpecHash": "78M4MAwq0hGG8D7qSi0f/aiiyIzgaZRLXzy0GNVo/HzbZgHWXRqGDwgHfiwo651kG67iAJSYRYPmUyyUSnE99g==",
   "success": true,
   "projectFilePath": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\api_for_flutter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alato\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\alato\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.20\\microsoft.aspnetcore.authentication.jwtbearer.6.0.20.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",

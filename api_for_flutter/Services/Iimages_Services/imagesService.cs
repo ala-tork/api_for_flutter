@@ -47,7 +47,7 @@ namespace api_for_flutter.Services.Iimages_Services
 
         public Images UpdateImages(int idads,int idImages)
         {
-            var img = _dbcontext.Images.FirstOrDefault(i=>i.IdImage == idImages);
+            var img = _dbcontext.Images.FirstOrDefault(i=>i.IdImage == idImages && i.Active==1);
             if (img != null)
             {
                 img.IdAds = idads;
@@ -78,7 +78,7 @@ namespace api_for_flutter.Services.Iimages_Services
 
         public List<Images> GetImagesByIdAds(int idAds)
         {
-            var images = _dbcontext.Images.Where(img => img.IdAds == idAds).ToList();
+            var images = _dbcontext.Images.Where(img => img.IdAds == idAds && img.Active == 1).ToList();
 
             return images;
         }

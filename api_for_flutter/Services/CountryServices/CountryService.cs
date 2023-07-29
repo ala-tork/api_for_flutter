@@ -39,7 +39,7 @@ namespace api_for_flutter.Services.CountryServices
 
         public List<Countries> GetCountrys()
         {
-            return _context.Countries.ToList();
+            return _context.Countries.Where(a=>a.Active==1).ToList();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace api_for_flutter.Services.FeatureValueServices
 
         public async  Task<List<FeaturesValues>> GetAllFeaturesValues()
         {
-            var featuresValues = await _dbContext.FeaturesValues.ToListAsync();
+            var featuresValues = await _dbContext.FeaturesValues.Where(fv=>fv.Active==1).ToListAsync();
             return featuresValues;
         }
 
@@ -56,13 +56,13 @@ namespace api_for_flutter.Services.FeatureValueServices
         public async Task<List<FeaturesValues>> GetFeaturesValuesByFeature( int idf)
         {
             var featuresValues = await _dbContext.FeaturesValues
-                        .Where( f => f.IdF == idf).Include(f=>f.features).ToListAsync();
+                        .Where(f => f.IdF == idf && f.Active==1).Include(f=>f.features).ToListAsync();
             return featuresValues;
         }
 
         public async Task<FeaturesValues> GetFeatureValueById(int id)
         {
-            var featurevalue = await _dbContext.FeaturesValues.FirstOrDefaultAsync(f => f.IdF == id);
+            var featurevalue = await _dbContext.FeaturesValues.FirstOrDefaultAsync(f => f.IdF == id && f.Active==1);
             return featurevalue;
         }
 

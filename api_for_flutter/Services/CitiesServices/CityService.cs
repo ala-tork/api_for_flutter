@@ -7,6 +7,10 @@ namespace api_for_flutter.Services.CitiesServices
     public class CityService : ICityService
     {
         private readonly ApplicationDBContext _dbContext;
+        public CityService(ApplicationDBContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public Cities AddCity(CreateCity city)
         {
@@ -27,14 +31,10 @@ namespace api_for_flutter.Services.CitiesServices
             return newCity;
         }
 
-        public CityService (ApplicationDBContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
 
         public List<Cities> GetAllCitiesByCountry(int IdCountry)
         {
-            var cities = _dbContext.Cities.Where(c => c.IdCountry == IdCountry).Include(c=>c.Countries).ToList();
+            var cities = _dbContext.Cities.Where(c => c.IdCountry == IdCountry ).Include(c=>c.Countries).ToList();
             return cities;
         }
 

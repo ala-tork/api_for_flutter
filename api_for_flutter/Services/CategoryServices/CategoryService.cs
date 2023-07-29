@@ -39,13 +39,13 @@ namespace api_for_flutter.Services.CategoryServices
 
         public  Categories GetCategories (int id)
         {
-            var categ =   _context.Categories.FirstOrDefault(c=>c.IdCateg == id);
+            var categ =   _context.Categories.FirstOrDefault(c=>c.IdCateg == id && c.Active==1);
                 return categ;
         }
 
         public Categories GetCategoryById(int id)
         {
-            var categ = _context.Categories.FirstOrDefault(c=> c.IdCateg == id);
+            var categ = _context.Categories.FirstOrDefault(c=> c.IdCateg == id && c.Active==1);
             return categ;
         }
 
@@ -53,7 +53,7 @@ namespace api_for_flutter.Services.CategoryServices
         public List<Categories> GetCategoryTree(int? parentId = null)
         {
             //get children by id parent 
-            var categories = _context.Categories.Where(c => c.idparent == parentId).ToList();
+            var categories = _context.Categories.Where(c => c.idparent == parentId && c.Active==1).ToList();
             //parcour the list of shildren and make kal back to this function with the id of the son
             foreach (var category in categories)
             {
