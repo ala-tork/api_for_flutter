@@ -1,9 +1,11 @@
 using api_for_flutter.Data;
 using api_for_flutter.Services.AdsFeatureSerices;
 using api_for_flutter.Services.AdsServices;
+using api_for_flutter.Services.BrandsServices;
 using api_for_flutter.Services.CategoryServices;
 using api_for_flutter.Services.CitiesServices;
 using api_for_flutter.Services.CountryServices;
+using api_for_flutter.Services.DealsServices;
 using api_for_flutter.Services.FeatuesServices;
 using api_for_flutter.Services.FeatureValueServices;
 using api_for_flutter.Services.Iimages_Services;
@@ -77,6 +79,8 @@ builder.Services.AddScoped<IFeaturesService, FeaturesService>();
 builder.Services.AddScoped<IFeatureValueService, FeatureValueService>();
 builder.Services.AddScoped<IAdsFeatureService, AdsFeatureService>();
 builder.Services.AddScoped<IImageService, imagesService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IDealsService, DealsService>();
 
 var app = builder.Build();
 

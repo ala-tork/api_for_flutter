@@ -1,9 +1,10 @@
-﻿using api_for_flutter.Models;
-using api_for_flutter.Models.AdsFeaturesModel;
+﻿using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
+using api_for_flutter.Models.BrandsModel;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
 using api_for_flutter.Models.CountriesModel;
+using api_for_flutter.Models.DealsModel;
 using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesValuesModel;
 using api_for_flutter.Models.ImagesModel;
@@ -51,6 +52,11 @@ namespace api_for_flutter.Data
                 .WithMany()
                 .HasForeignKey(a => a.IdCity)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Ads>()
+                .HasOne(a => a.user)
+                .WithMany()
+                .HasForeignKey(a => a.IdUser)
+                .OnDelete(DeleteBehavior.NoAction);
             //deals
             modelBuilder.Entity<Deals>()
                 .HasOne(d => d.Countries)
@@ -69,6 +75,12 @@ namespace api_for_flutter.Data
                 .WithMany()
                 .HasForeignKey(d => d.IdCity)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Deals>()
+                .HasOne(a => a.user)
+                .WithMany()
+                .HasForeignKey(a => a.IdUser)
+                .OnDelete(DeleteBehavior.NoAction);
+
 
             // Category
             modelBuilder.Entity<Categories>()
@@ -113,6 +125,10 @@ namespace api_for_flutter.Data
                 .HasOne(i => i.Ads)
                 .WithMany()
                 .HasForeignKey(i => i.IdAds);
+            modelBuilder.Entity<Images>()
+                .HasOne(i => i.Deals)
+                .WithMany()
+                .HasForeignKey(i => i.IdDeals);
 
 
 

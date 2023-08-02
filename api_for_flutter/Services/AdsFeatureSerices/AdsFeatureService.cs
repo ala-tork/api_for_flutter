@@ -1,5 +1,6 @@
 ﻿using api_for_flutter.Data;
 using api_for_flutter.Models.AdsFeaturesModel;
+using api_for_flutter.Models.AdsModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace api_for_flutter.Services.AdsFeatureSerices
@@ -59,6 +60,47 @@ namespace api_for_flutter.Services.AdsFeatureSerices
             {
                 
                 existingFeatures.IdAds = features.IdAds;
+                existingFeatures.IdDeals = features.IdDeals;
+                existingFeatures.IdFeature = features.IdFeature;
+                existingFeatures.IdFeaturesValues = features.IdFeaturesValues;
+                existingFeatures.MyValues = features.MyValues;
+                existingFeatures.Active = features.Active;
+
+                await _dbContext.SaveChangesAsync();
+            }
+
+            return existingFeatures;
+        }
+
+
+        // Deals Fucntions 
+
+
+
+        public async Task<List<AdsFeatures>> GetAllDealsFeatures(int idDeals)
+        {
+            var res = await _dbContext.AdsFeatures.Where(af => af.IdDeals == idDeals)
+                                    .Include(af => af.features)
+                                    .Include(af => af.FeaturesValues).ToListAsync();
+            return res;
+        }
+
+        public async  Task<List<AdsFeatures>> DeleteDealsFeatures(int idDeals)
+        {
+            var res = await _dbContext.AdsFeatures.Where(af => af.IdDeals == idDeals)
+                                    .Include(af => af.features)
+                                    .Include(af => af.FeaturesValues).ToListAsync();
+            return res;
+        }
+
+        public async  Task<AdsFeatures> UpdateDealsFeatures(CreateAdsFeature features, int idDeals)
+        {
+            var existingFeatures = await _dbContext.AdsFeatures.FindAsync(idDeals);
+
+            if (existingFeatures != null)
+            {
+
+                //existingFeatures.IdAds = features.IdAds;
                 existingFeatures.IdDeals = features.IdDeals;
                 existingFeatures.IdFeature = features.IdFeature;
                 existingFeatures.IdFeaturesValues = features.IdFeaturesValues;

@@ -60,5 +60,42 @@ namespace api_for_flutter.Controllers
             }
             return BadRequest("we cant update this feature Ads");
         }
+
+        // Deals EndPoint
+
+        [HttpGet("GetDealsFeatures")]
+        public async Task<IActionResult> GetAllDealsFeaturesByIdDeals(int idDeals)
+        {
+
+            var res = await _service.GetAllDealsFeatures(idDeals);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return BadRequest("ther is no Deals Features for this Deals ID");
+
+        }
+        [HttpDelete("DeleteDealstFeatures")]
+        public async Task<IActionResult> DeleteDealsFeaturesByDealsId(int idDeals)
+        {
+            var res = await _service.DeleteDealsFeatures(idDeals);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return BadRequest("Deals Features Not Found ");
+
+        }
+
+        [HttpPut("UpdateDealsFeatures")]
+        public async Task<IActionResult> UpdateDealsFeatures(CreateAdsFeature adsFeature, int idDeals)
+        {
+            if (adsFeature != null && idDeals != null)
+            {
+                var res = _service.UpdateDealsFeatures(adsFeature, idDeals);
+                return Ok(res);
+            }
+            return BadRequest("we cant update this Deals feature");
+        }
     }
 }

@@ -75,6 +75,7 @@ namespace api_for_flutter.Services.AdsServices
                 var ads = query.OrderBy(a => a.IdAds) 
                                .Skip(page * pageSize)
                                .Take(pageSize)
+                               .Include(a=>a.user)
                                .Include(a => a.Categories)
                                .Include(a => a.Countries)
                                .Include(a => a.Cities)
@@ -86,6 +87,7 @@ namespace api_for_flutter.Services.AdsServices
         public Ads GetAdById(int id)
         {
             return _context.Ads.Where(a => a.Active == 1)
+                .Include(a => a.user)
                 .Include(a => a.Categories)
                 .Include(a => a.Countries)
                 .Include(a => a.Cities)
@@ -116,6 +118,7 @@ namespace api_for_flutter.Services.AdsServices
                .OrderBy(a => a.IdAds)
                .Skip(page * pageSize)
                .Take(pageSize)
+               .Include(a => a.user)
                .Include(a => a.Categories)
                .Include(a => a.Countries)
                .Include(a => a.Cities)

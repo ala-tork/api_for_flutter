@@ -40,5 +40,29 @@ namespace api_for_flutter.Controllers
             var res = _imageService.GetImagesByIdAds(idAds);
             return Ok(res);
         }
+
+
+        // Deals Images Controlelr EndPoint 
+
+        [HttpPut("updateDealsImages")]
+        public IActionResult updateDealsimage(int idImage, int idDeals)
+        {
+            var res = _imageService.UpdateDealsImages(idDeals, idImage);
+            return Ok(res);
+        }
+
+        [HttpDelete("deleteDealsImages")]
+        public IActionResult DeleteDealsImage(int idDeals)
+        {
+            var res = _imageService.DeleteDealsImages(idDeals);
+            return Ok(res);
+        }
+
+        [HttpGet("getAllDealsImages")]
+        public IActionResult GetAllImagesByDeals(int idDeals)
+        {
+            var res = _imageService.GetImagesByIdDeals(idDeals);
+            return Ok(res);
+        }
     }
 }

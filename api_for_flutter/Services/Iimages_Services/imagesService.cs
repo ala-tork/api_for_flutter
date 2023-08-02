@@ -1,4 +1,5 @@
 ﻿using api_for_flutter.Data;
+using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.ImagesModel;
 using api_for_flutter.Services.Images_Services;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,45 @@ namespace api_for_flutter.Services.Iimages_Services
         {
             var images = _dbcontext.Images.Where(img => img.IdAds == idAds && img.Active == 1).ToList();
 
+            return images;
+        }
+
+
+        //Deals Images 
+
+        public Images UpdateDealsImages(int idDeals, int idImages)
+        {
+            var img = _dbcontext.Images.FirstOrDefault(i => i.IdImage == idImages && i.Active == 1);
+            if (img != null)
+            {
+                img.IdDeals = idDeals;
+                _dbcontext.Entry(img).State = EntityState.Modified;
+                _dbcontext.SaveChanges();
+                return img;
+            }
+            else
+                return null;
+        }
+
+        public Images DeleteDealsImages(int idDeals)
+        {
+            var imagesToDelete = _dbcontext.Images.Where(img => img.IdDeals == idDeals).ToList();
+
+            if (imagesToDelete.Count > 0)
+            {
+
+                var imageToDelete = imagesToDelete[0];
+                _dbcontext.Images.RemoveRange(imagesToDelete);
+                _dbcontext.SaveChanges();
+                return imageToDelete;
+            }
+
+            return null;
+        }
+
+        public List<Images> GetImagesByIdDeals(int idDeals)
+        {
+            var images = _dbcontext.Images.Where(img => img.IdDeals == idDeals && img.Active == 1).ToList();
             return images;
         }
     }

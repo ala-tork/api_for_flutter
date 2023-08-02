@@ -4,6 +4,7 @@ using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
 using api_for_flutter.Models.CountriesModel;
 using api_for_flutter.Models.FeaturesValuesModel;
+using CoolApi.Models;
 
 namespace api_for_flutter.Models.AdsModels
 {
@@ -23,6 +24,8 @@ namespace api_for_flutter.Models.AdsModels
         [ForeignKey("IdCateg")]
         public Categories Categories { get; set; }
         public int IdUser { get; set; }
+        [ForeignKey("IdUser")]
+        public User user { get; set; }
         public int IdCountrys { get; set; }
         [ForeignKey("IdCountrys")]
         public Countries Countries { get; set; }

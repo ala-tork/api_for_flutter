@@ -9,5 +9,6 @@ namespace api_for_flutter.Services.FeatureValueServices
         Task<List<FeaturesValues>> GetAllFeaturesValues();
         Task<List<FeaturesValues>> GetFeaturesValuesByFeature(int idf);
         //Task<List<FeaturesValues>> GetFeaturesValuesByAds(int idAds);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using api_for_flutter.Models.AdsModels;
+using api_for_flutter.Models.DealsModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,8 @@ namespace api_for_flutter.Models.ImagesModel
         [ForeignKey("IdAds")]
         public Ads? Ads { get; set; }
         public int? IdDeals { get; set; }
+        [ForeignKey("IdDeals")]
+        public Deals? Deals { get; set; } 
         public int? IdProduct { get; set; }
         public int Active { get; set; }
     }
