@@ -24,7 +24,7 @@ namespace api_for_flutter.Services.DealsServices
                 Discount = dl.Discount,
                 Quantity = dl.Quantity,
                 IdPricesDelevery = dl.IdPricesDelevery,
-                DatePublication = dl.DatePublication,
+                DatePublication = DateTime.Now.ToString("yyyy-MM-dd"),
                 DateEND = dl.DateEND,
                 ImagePrinciple = dl.ImagePrinciple,
                 VideoName = dl.VideoName,
@@ -36,7 +36,8 @@ namespace api_for_flutter.Services.DealsServices
                 IdPrize = dl.IdPrize,
                 Locations = dl.Locations,
                 IdBoost = dl.IdBoost,
-                Active = dl.Active
+                Active = dl.Active,
+                
             };
 
             _context.Deals.Add(deal);

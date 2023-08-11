@@ -112,7 +112,7 @@ namespace api_for_flutter.Controllers
                 {
                     return Ok(res);
                 }
-                return NotFound("There is no ad with this id");
+                //return NotFound("There is no ad with this id");
             
             return BadRequest(ModelState);
         }

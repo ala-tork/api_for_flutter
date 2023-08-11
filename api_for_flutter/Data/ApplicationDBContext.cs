@@ -8,8 +8,9 @@ using api_for_flutter.Models.DealsModel;
 using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesValuesModel;
 using api_for_flutter.Models.ImagesModel;
+using api_for_flutter.Models.LikesPublicationModel;
+using api_for_flutter.Models.UserModel;
 using Azure;
-using CoolApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
@@ -31,7 +32,7 @@ namespace api_for_flutter.Data
         public DbSet<FeaturesValues> FeaturesValues { get; set; }
         public DbSet<AdsFeatures> AdsFeatures { get; set; }
         public DbSet<Images> Images { get; set; }
-
+        public DbSet<Like> Likes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Ads
@@ -129,8 +130,19 @@ namespace api_for_flutter.Data
                 .HasOne(i => i.Deals)
                 .WithMany()
                 .HasForeignKey(i => i.IdDeals);
-
-
+            // Like
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.user)
+                .WithMany()
+                .HasForeignKey(l => l.IdUser);
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.Deals)
+                .WithMany()
+                .HasForeignKey(l => l.IdDeal);
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.Ads)
+                .WithMany()
+                .HasForeignKey(l => l.IdAd);
 
 
             /* modelBuilder.Entity<FeaturesValues>()

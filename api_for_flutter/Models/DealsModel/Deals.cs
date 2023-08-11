@@ -4,7 +4,7 @@ using api_for_flutter.Models.BrandsModel;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
 using api_for_flutter.Models.CountriesModel;
-using CoolApi.Models;
+using api_for_flutter.Models.UserModel;
 
 namespace api_for_flutter.Models.DealsModel
 {

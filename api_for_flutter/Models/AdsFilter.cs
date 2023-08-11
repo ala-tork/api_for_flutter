@@ -2,6 +2,7 @@
 {
     public class AdsFilter
     {
+        public string? adsName { get; set; }
         public int? IdCountrys { get; set; }
         public int? IdCity { get; set; }
         public List<int?> IdFeaturesValues { get; set; }

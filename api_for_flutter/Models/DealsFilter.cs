@@ -2,6 +2,7 @@
 {
     public class DealsFilter
     {
+        public string? DealsName { get; set; }
         public int? IdCountrys { get; set; }
         public int? IdCity { get; set; }
         public int? IdBrans { get; set; }

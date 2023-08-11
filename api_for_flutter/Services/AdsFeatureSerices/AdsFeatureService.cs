@@ -2,6 +2,7 @@
 using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto;
 
 namespace api_for_flutter.Services.AdsFeatureSerices
 {
@@ -87,10 +88,15 @@ namespace api_for_flutter.Services.AdsFeatureSerices
 
         public async  Task<List<AdsFeatures>> DeleteDealsFeatures(int idDeals)
         {
-            var res = await _dbContext.AdsFeatures.Where(af => af.IdDeals == idDeals)
-                                    .Include(af => af.features)
-                                    .Include(af => af.FeaturesValues).ToListAsync();
-            return res;
+            var dealsFeaturesToDelete = await _dbContext.AdsFeatures.Where(af => af.IdDeals == idDeals).ToListAsync();
+
+            if (dealsFeaturesToDelete.Count > 0)
+            {
+                _dbContext.AdsFeatures.RemoveRange(dealsFeaturesToDelete);
+                await _dbContext.SaveChangesAsync();
+            }
+
+            return dealsFeaturesToDelete;
         }
 
         public async  Task<AdsFeatures> UpdateDealsFeatures(CreateAdsFeature features, int idDeals)

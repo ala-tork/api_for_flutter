@@ -38,7 +38,9 @@ namespace api_for_flutter.Services.AdsServices
                 IdCity = ad.IdCity,
                 Locations = ad.Locations,
                 IdBoost = ad.IdBoost,
+                DatePublication = DateTime.Now.ToString("yyyy-MM-dd"),
                 Active = ad.Active,
+                
             };
 
             _context.Ads.Add(newAd);
@@ -148,7 +150,7 @@ namespace api_for_flutter.Services.AdsServices
                 ad.Locations = ads.Locations;
                 ad.Price = ads.Price;
                 ad.VideoName = ads.VideoName;
-
+                ad.DatePublication = DateTime.Now.ToString("yyyy-MM-dd");
                 _context.Entry(ad).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return ad;

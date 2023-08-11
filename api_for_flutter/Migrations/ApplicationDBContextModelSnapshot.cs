@@ -22,61 +22,6 @@ namespace api_for_flutter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CoolApi.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DateInscription")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RefreshToken")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("active")
-                        .HasColumnType("int");
-
-                    b.Property<string>("address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("firstname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lastname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
                 {
                     b.Property<int>("IdAF")
@@ -122,6 +67,10 @@ namespace api_for_flutter.Migrations
 
                     b.Property<int>("Active")
                         .HasColumnType("int");
+
+                    b.Property<string>("DatePublication")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -475,6 +424,95 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("api_for_flutter.Models.LikesPublicationModel.Like", b =>
+                {
+                    b.Property<int>("IdLP")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdLP"));
+
+                    b.Property<int?>("IdAd")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDeal")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdProd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MyDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdLP");
+
+                    b.HasIndex("IdAd");
+
+                    b.HasIndex("IdDeal");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.UserModel.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateInscription")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("firstname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
                 {
                     b.HasOne("api_for_flutter.Models.Features.Features", "features")
@@ -510,7 +548,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("CoolApi.Models.User", "user")
+                    b.HasOne("api_for_flutter.Models.UserModel.User", "user")
                         .WithMany()
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -569,7 +607,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("CoolApi.Models.User", "user")
+                    b.HasOne("api_for_flutter.Models.UserModel.User", "user")
                         .WithMany()
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -621,6 +659,29 @@ namespace api_for_flutter.Migrations
                     b.Navigation("Ads");
 
                     b.Navigation("Deals");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.LikesPublicationModel.Like", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.AdsModels.Ads", "Ads")
+                        .WithMany()
+                        .HasForeignKey("IdAd");
+
+                    b.HasOne("api_for_flutter.Models.DealsModel.Deals", "Deals")
+                        .WithMany()
+                        .HasForeignKey("IdDeal");
+
+                    b.HasOne("api_for_flutter.Models.UserModel.User", "user")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ads");
+
+                    b.Navigation("Deals");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.CategoryModels.Categories", b =>

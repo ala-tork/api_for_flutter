@@ -10,6 +10,7 @@ using api_for_flutter.Services.FeatuesServices;
 using api_for_flutter.Services.FeatureValueServices;
 using api_for_flutter.Services.Iimages_Services;
 using api_for_flutter.Services.Images_Services;
+using api_for_flutter.Services.LikeServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -81,6 +82,7 @@ builder.Services.AddScoped<IAdsFeatureService, AdsFeatureService>();
 builder.Services.AddScoped<IImageService, imagesService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IDealsService, DealsService>();
+builder.Services.AddScoped<ILikeService,LikeService>();
 
 var app = builder.Build();
 
