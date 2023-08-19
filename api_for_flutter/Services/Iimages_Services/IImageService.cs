@@ -14,5 +14,6 @@ namespace api_for_flutter.Services.Images_Services
         public Images UpdateDealsImages(int idDeals, int idImages);
         public Images DeleteDealsImages(int idDeals);
         public List<Images> GetImagesByIdDeals(int idDeals);
+        //public void CleanUpOrphanedImages();
     }
 }

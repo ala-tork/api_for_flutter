@@ -9,7 +9,12 @@ namespace api_for_flutter.Services.Iimages_Services
     public class imagesService : IImageService
     {
         protected readonly ApplicationDBContext _dbcontext;
-        public imagesService(ApplicationDBContext dbcontext) {  _dbcontext = dbcontext; }
+        private readonly IConfiguration _configuration;
+        public imagesService(ApplicationDBContext dbcontext , IConfiguration config) 
+        { 
+            _dbcontext = dbcontext;
+            this._configuration = config;
+        }
 
 
 
@@ -33,7 +38,8 @@ namespace api_for_flutter.Services.Iimages_Services
 
         public string SaveImageAndGetUrl(IFormFile imageFile)
         {
-            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Assets", "images");
+            string uploadsFolder = _configuration["AssetsFolder:ImagesFolder"].ToString();
+            //string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Assets", "images");
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
@@ -43,7 +49,7 @@ namespace api_for_flutter.Services.Iimages_Services
             }
 
             // return "https://localhost:7058/Assets/images/" + uniqueFileName;
-            return "/Assets/images/" + uniqueFileName;
+            return uniqueFileName;
         }
 
         public Images UpdateImages(int idads,int idImages)
@@ -107,11 +113,20 @@ namespace api_for_flutter.Services.Iimages_Services
 
             if (imagesToDelete.Count > 0)
             {
+                foreach(var img in imagesToDelete)
+                {
+                    string imagePath = Path.Combine(_configuration["AssetsFolder:ImagesFolder"].ToString(), img.Title);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
 
-                var imageToDelete = imagesToDelete[0];
-                _dbcontext.Images.RemoveRange(imagesToDelete);
-                _dbcontext.SaveChanges();
-                return imageToDelete;
+                    _dbcontext.Images.RemoveRange(img);
+                    _dbcontext.SaveChanges();
+                    
+                }
+
+                return imagesToDelete[0];
             }
 
             return null;
@@ -122,5 +137,23 @@ namespace api_for_flutter.Services.Iimages_Services
             var images = _dbcontext.Images.Where(img => img.IdDeals == idDeals && img.Active == 1).ToList();
             return images;
         }
+
+
+      /*  public void CleanUpOrphanedImages()
+        {
+            string imagesFolder = _configuration["AssetsFolder:ImagesFolder"].ToString();
+            string[] imageFiles = Directory.GetFiles(imagesFolder);
+
+            foreach (string imagePath in imageFiles)
+            {
+                string imageName = "/Assets/images/"+Path.GetFileName(imagePath);
+
+                bool existsInDatabase = _dbcontext.Images.Any(img => img.Title == imageName);
+                if (!existsInDatabase)
+                {
+                    File.Delete(imagePath);
+                }
+            }
+        }*/
     }
 }

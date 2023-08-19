@@ -146,10 +146,12 @@ namespace api_for_flutter.Services.AdsServices
                 ad.IdCateg = ads.IdCateg;
                 ad.IdCountrys = ads.IdCountrys;
                 ad.IdUser = ads.IdUser;
+                ad.IdBoost= ads.IdBoost;
                 ad.ImagePrinciple = ads.ImagePrinciple;
                 ad.Locations = ads.Locations;
                 ad.Price = ads.Price;
                 ad.VideoName = ads.VideoName;
+                ad.Active=ads.Active;
                 ad.DatePublication = DateTime.Now.ToString("yyyy-MM-dd");
                 _context.Entry(ad).State = EntityState.Modified;
                 await _context.SaveChangesAsync();

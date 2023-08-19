@@ -1,6 +1,7 @@
 ﻿using api_for_flutter.Services.Images_Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace api_for_flutter.Controllers
 {
@@ -64,5 +65,12 @@ namespace api_for_flutter.Controllers
             var res = _imageService.GetImagesByIdDeals(idDeals);
             return Ok(res);
         }
+      /*  [HttpDelete("clear")]
+        public async Task DeleteAll()
+        {
+             _imageService.CleanUpOrphanedImages();
+        }*/
+
+
     }
 }

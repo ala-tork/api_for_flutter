@@ -69,6 +69,7 @@ namespace api_for_flutter.Services.DealsServices
                 .Include(d => d.Categories)
                 .Include(d => d.Countries)
                 .Include(d => d.Cities)
+                .Include(d=>d.Prizes)
                 .FirstOrDefault();
         }
 
@@ -94,7 +95,11 @@ namespace api_for_flutter.Services.DealsServices
         {
             const int pageSize = 4; 
             var skip = page * pageSize;
-            return _context.Deals.Where(d => d.IdUser == iduser && d.Active == 1).Skip(skip).Take(pageSize).ToList();
+            return _context.Deals
+                .Where(d => d.IdUser == iduser && d.Active == 1)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
         }
 
         public async Task<Deals> UpdateDeals(CreateDeals deal, int id)
@@ -109,7 +114,7 @@ namespace api_for_flutter.Services.DealsServices
                 existingDeal.Discount = deal.Discount;
                 existingDeal.Quantity = deal.Quantity;
                 existingDeal.IdPricesDelevery = deal.IdPricesDelevery;
-                existingDeal.DatePublication = deal.DatePublication;
+                existingDeal.DatePublication = DateTime.Now.ToString("yyyy-MM-dd");
                 existingDeal.DateEND = deal.DateEND;
                 existingDeal.ImagePrinciple = deal.ImagePrinciple;
                 existingDeal.VideoName = deal.VideoName;

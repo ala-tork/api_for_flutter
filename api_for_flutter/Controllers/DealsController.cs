@@ -23,18 +23,18 @@ namespace api_for_flutter.Controllers
             return Ok(deals);
         }
 
-        [HttpGet("showmore")]
-        public ActionResult<List<Deals>> ShowMore(int page = 0)
-        {
-            var deals = _dealsService.ShowMore(page);
-            return Ok(deals);
-        }
+
 
         [HttpGet("showmore/{iduser}")]
         public ActionResult<List<Deals>> ShowMoreByIdUser(int iduser, int page = 0)
         {
             var deals = _dealsService.ShowMoreByIdUser(iduser, page);
-            return Ok(deals);
+            var nbItems = _dealsService.NbrDealsByIdUser(iduser);
+            return Ok(new
+            {
+                items=deals,
+                nbItems=nbItems
+            });
         }
 
         [HttpPost]
@@ -53,13 +53,6 @@ namespace api_for_flutter.Controllers
                 return NotFound();
             }
             return Ok(deal);
-        }
-
-        [HttpGet("nbrads")]
-        public ActionResult<int> NbrAds()
-        {
-            var count = _dealsService.NbrAds();
-            return Ok(count);
         }
 
         [HttpGet("nbDealsByUser/{iduser}")]

@@ -4,7 +4,6 @@ namespace api_for_flutter.Models.AdsModels
 {
     public class CreateAds
     {
-        //public int Id { get; set; }
         //public int IdAds { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -18,8 +17,6 @@ namespace api_for_flutter.Models.AdsModels
         public int IdCity { get; set; }
         public string Locations { get; set; }
         public int? IdBoost { get; set; }
-       // public List<ListFeatures_FeatureValue>? listFeatures_FeatureValues { get; set; }
-        //public List<IFormFile> images { get; set; } 
         public int Active { get; set; }
 
     }

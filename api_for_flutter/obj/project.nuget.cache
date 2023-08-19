@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UF744bzTzpWJJFW7U1BQuqmkoo+ubXwVIk1IejFgBufbR6YdiLe458Pa7qHVX8rWHEmv5vXiI0XFDlZtToUInA==",
+  "dgSpecHash": "xR5oJXKHIsc9fEbrWQJVi324qT6U22vMImuw+xE2LkTo6URaPceHpJvaS/8SV5SPkoLEORQPvagRKSbAm3MxYQ==",
   "success": true,
   "projectFilePath": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\api_for_flutter.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Users\\alato\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\mimekit\\4.1.0\\mimekit.4.1.0.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\alato\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\alato\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

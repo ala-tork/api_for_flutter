@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using api_for_flutter.Models.BootsModel;
 using api_for_flutter.Models.BrandsModel;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
 using api_for_flutter.Models.CountriesModel;
+using api_for_flutter.Models.PrizeModel;
 using api_for_flutter.Models.UserModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
 
 namespace api_for_flutter.Models.DealsModel
 {
@@ -31,17 +35,21 @@ namespace api_for_flutter.Models.DealsModel
         [ForeignKey("IdUser")]
         public User user { get; set; }
         public int IdCountrys { get; set; }
-        [ForeignKey("IdCountry")]
+        [ForeignKey("IdCountrys")]
         public Countries Countries { get; set; }
         public int IdCity { get; set; }
-        [ForeignKey("IdIdCity")]
+        [ForeignKey("IdCity")]
         public Cities Cities { get; set; }
         public int IdBrand { get; set; }
         [ForeignKey("IdBrand")]
         public Brands Brands { get; set; }
         public int? IdPrize { get; set; }
+        [ForeignKey("IdPrize")]
+        public Prizes? Prizes { get; set; }
         public string Locations { get; set; }
         public int? IdBoost { get; set; }
+        [ForeignKey("IdBoost")]
+        public Boosts? Boosts { get; set; }
         public int Active { get; set; }
     }
 }

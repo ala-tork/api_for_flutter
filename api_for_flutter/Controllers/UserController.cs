@@ -12,8 +12,6 @@ using System.Net;
 using MailKit.Net.Smtp;
 using MimeKit;
 using BCrypt.Net;
-
-
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -51,18 +49,18 @@ namespace CoolApi.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-            new Claim(ClaimTypes.Email, user.email),
-            new Claim("Password", user.password),
-            new Claim("firstname", user.firstname),
-            new Claim("lastname", user.lastname),
-            new Claim("phone", user.phone),
-            new Claim("country", user.country),
-            new Claim("address", user.address),
-            new Claim("id", user.Id.ToString()),
-            new Claim("active", user.active.ToString()),
-            new Claim("role", user.role.ToString()),
-            new Claim("refreshToken", user.RefreshToken),
-        }),
+                    new Claim(ClaimTypes.Email, user.email),
+                    new Claim("Password", user.password),
+                    new Claim("firstname", user.firstname),
+                    new Claim("lastname", user.lastname),
+                    new Claim("phone", user.phone),
+                    new Claim("country", user.country),
+                    new Claim("address", user.address),
+                    new Claim("id", user.Id.ToString()),
+                    new Claim("active", user.active.ToString()),
+                    new Claim("role", user.role.ToString()),
+                    new Claim("refreshToken", user.RefreshToken),
+                }),
                 Expires = DateTime.UtcNow.AddMinutes(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -345,6 +343,7 @@ namespace CoolApi.Controllers
 
             return hashedPassword;
         }
+
         private void SendPasswordResetEmail(string userEmail, string newPassword)
         {
             var message = new MimeMessage();

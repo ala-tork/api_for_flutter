@@ -1,6 +1,7 @@
 using api_for_flutter.Data;
 using api_for_flutter.Services.AdsFeatureSerices;
 using api_for_flutter.Services.AdsServices;
+using api_for_flutter.Services.BoostServices;
 using api_for_flutter.Services.BrandsServices;
 using api_for_flutter.Services.CategoryServices;
 using api_for_flutter.Services.CitiesServices;
@@ -11,6 +12,8 @@ using api_for_flutter.Services.FeatureValueServices;
 using api_for_flutter.Services.Iimages_Services;
 using api_for_flutter.Services.Images_Services;
 using api_for_flutter.Services.LikeServices;
+using api_for_flutter.Services.WinnersServices;
+using api_for_flutter.Services.WishListServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -83,6 +86,9 @@ builder.Services.AddScoped<IImageService, imagesService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IDealsService, DealsService>();
 builder.Services.AddScoped<ILikeService,LikeService>();
+builder.Services.AddScoped<IWinnerService,WinnersService>();
+builder.Services.AddScoped<IWishListService, WishListService>();
+builder.Services.AddScoped<IBoostService, BoostService>();
 
 var app = builder.Build();
 

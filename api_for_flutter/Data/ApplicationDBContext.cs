@@ -1,5 +1,6 @@
 ﻿using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
+using api_for_flutter.Models.BootsModel;
 using api_for_flutter.Models.BrandsModel;
 using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
@@ -9,10 +10,13 @@ using api_for_flutter.Models.Features;
 using api_for_flutter.Models.FeaturesValuesModel;
 using api_for_flutter.Models.ImagesModel;
 using api_for_flutter.Models.LikesPublicationModel;
+using api_for_flutter.Models.PrizeModel;
 using api_for_flutter.Models.UserModel;
-using Azure;
+using api_for_flutter.Models.WinnersModel;
+using api_for_flutter.Models.WishListModel;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+
+
 
 namespace api_for_flutter.Data
 {
@@ -33,6 +37,11 @@ namespace api_for_flutter.Data
         public DbSet<AdsFeatures> AdsFeatures { get; set; }
         public DbSet<Images> Images { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Winners> Winners { get; set; }
+        public DbSet<Prizes> Prizes { get; set; }
+        public DbSet<WishList> WishList { get; set; }
+
+        public DbSet<Boosts> Boosts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Ads
@@ -58,6 +67,10 @@ namespace api_for_flutter.Data
                 .WithMany()
                 .HasForeignKey(a => a.IdUser)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Ads>()
+                .HasOne(a => a.Boosts)
+                .WithMany()
+                .HasForeignKey(a => a.IdBoost);
             //deals
             modelBuilder.Entity<Deals>()
                 .HasOne(d => d.Countries)
@@ -77,11 +90,19 @@ namespace api_for_flutter.Data
                 .HasForeignKey(d => d.IdCity)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Deals>()
-                .HasOne(a => a.user)
+                .HasOne(d => d.user)
                 .WithMany()
-                .HasForeignKey(a => a.IdUser)
+                .HasForeignKey(d => d.IdUser)
                 .OnDelete(DeleteBehavior.NoAction);
-
+            modelBuilder.Entity<Deals>()
+                .HasOne(d => d.Prizes)
+                .WithMany()
+                .HasForeignKey(d => d.IdPrize)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Deals>()
+                .HasOne(d => d.Boosts)
+                .WithMany()
+                .HasForeignKey(d => d.IdBoost);
 
             // Category
             modelBuilder.Entity<Categories>()
@@ -143,6 +164,41 @@ namespace api_for_flutter.Data
                 .HasOne(l => l.Ads)
                 .WithMany()
                 .HasForeignKey(l => l.IdAd);
+
+            //Winners 
+            modelBuilder.Entity<Winners>()
+                .HasOne(w => w.user)
+                .WithMany()
+                .HasForeignKey(w => w.IdUser);
+            modelBuilder.Entity<Winners>()
+                .HasOne(w => w.Prizes)
+                .WithMany()
+                .HasForeignKey(w => w.IdPrize)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            //Prizes
+            modelBuilder.Entity<Prizes>()
+                .HasOne(p => p.user)
+                .WithMany()
+                .HasForeignKey(p => p.IdUser);
+
+            //WishList
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(w => w.user)
+                .WithMany()
+                .HasForeignKey(w => w.IdUser);
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(w => w.ads)
+                .WithMany()
+                .HasForeignKey(w=>w.IdAd);
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(w => w.deals)
+                .WithMany()
+                .HasForeignKey(w => w.IdDeal);
+
 
 
             /* modelBuilder.Entity<FeaturesValues>()
