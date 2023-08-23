@@ -5,9 +5,10 @@ namespace api_for_flutter.Services.Images_Services
     public interface IImageService
     {
         string SaveImageAndGetUrl(IFormFile imageFile);
+        Images DeleteImages(int imageId);
         public Images SaveImages(IFormFile imageFile );
         public Images UpdateImages(int idads, int idImages);
-        public Images DeleteImages(int idAds);
+        public Images DeleteAdsImages(int idAds);
         public List<Images> GetImagesByIdAds(int idAds);
 
         //Deals Images 
@@ -15,5 +16,10 @@ namespace api_for_flutter.Services.Images_Services
         public Images DeleteDealsImages(int idDeals);
         public List<Images> GetImagesByIdDeals(int idDeals);
         //public void CleanUpOrphanedImages();
+
+        //prize
+        public Task<Images> UpdateTaskImage(int idPrize, int idimage);
+        public Task<Images> DeletePrizeImages(int idprize);
+        public Task<Images> GetPrizeImage(int idprize);
     }
 }

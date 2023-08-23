@@ -455,6 +455,9 @@ namespace api_for_flutter.Migrations
                     b.Property<int?>("IdDeals")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdPrize")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdProduct")
                         .HasColumnType("int");
 
@@ -470,6 +473,8 @@ namespace api_for_flutter.Migrations
                     b.HasIndex("IdAds");
 
                     b.HasIndex("IdDeals");
+
+                    b.HasIndex("IdPrize");
 
                     b.ToTable("Images");
                 });
@@ -520,14 +525,13 @@ namespace api_for_flutter.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DatePrize")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdUser")
+                    b.Property<int?>("IdUser")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -826,9 +830,15 @@ namespace api_for_flutter.Migrations
                         .WithMany()
                         .HasForeignKey("IdDeals");
 
+                    b.HasOne("api_for_flutter.Models.PrizeModel.Prizes", "Prizes")
+                        .WithMany()
+                        .HasForeignKey("IdPrize");
+
                     b.Navigation("Ads");
 
                     b.Navigation("Deals");
+
+                    b.Navigation("Prizes");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.LikesPublicationModel.Like", b =>
@@ -858,9 +868,7 @@ namespace api_for_flutter.Migrations
                 {
                     b.HasOne("api_for_flutter.Models.UserModel.User", "user")
                         .WithMany()
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdUser");
 
                     b.Navigation("user");
                 });

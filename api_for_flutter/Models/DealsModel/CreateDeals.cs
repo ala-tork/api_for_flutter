@@ -14,7 +14,6 @@ namespace api_for_flutter.Models.DealsModel
         public double Price { get; set; }
         public int? Discount { get; set; }
         public int Quantity { get; set; }
-
         public int? IdPricesDelevery { get; set; }
         public string? DatePublication { get; set; }
         public string? DateEND { get; set; }

@@ -40,7 +40,6 @@ namespace api_for_flutter.Data
         public DbSet<Winners> Winners { get; set; }
         public DbSet<Prizes> Prizes { get; set; }
         public DbSet<WishList> WishList { get; set; }
-
         public DbSet<Boosts> Boosts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -151,6 +150,10 @@ namespace api_for_flutter.Data
                 .HasOne(i => i.Deals)
                 .WithMany()
                 .HasForeignKey(i => i.IdDeals);
+            modelBuilder.Entity<Images>()
+                .HasOne(i => i.Prizes)
+                .WithMany()
+                .HasForeignKey(i => i.IdPrize);
             // Like
             modelBuilder.Entity<Like>()
                 .HasOne(l => l.user)

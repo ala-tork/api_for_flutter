@@ -14,6 +14,8 @@ namespace api_for_flutter.Controllers
         {
             _imageService = imageService;
         }
+
+
         [HttpPost]
         public IActionResult AddImage(IFormFile imageFile)
         {
@@ -21,6 +23,15 @@ namespace api_for_flutter.Controllers
             return Ok(res);
 
         }
+
+        [HttpDelete("IdImage")]
+        public IActionResult DeleteImages(int idImage)
+        {
+            var res = _imageService.DeleteImages(idImage);
+            return Ok(res);
+        }
+
+
         [HttpPut]
         public IActionResult updateimage(int idImage,int idAds)
         {
@@ -29,9 +40,9 @@ namespace api_for_flutter.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteImage(int idAds)
+        public IActionResult DeleteAdImages(int idAds)
         {
-            var res = _imageService.DeleteImages(idAds);
+            var res = _imageService.DeleteAdsImages(idAds);
             return Ok(res);
         }
 
@@ -48,9 +59,17 @@ namespace api_for_flutter.Controllers
         [HttpPut("updateDealsImages")]
         public IActionResult updateDealsimage(int idImage, int idDeals)
         {
-            var res = _imageService.UpdateDealsImages(idDeals, idImage);
-            return Ok(res);
+            var updatedImage = _imageService.UpdateDealsImages(idDeals, idImage);
+            if (updatedImage != null)
+            {
+                return Ok(updatedImage);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
+
 
         [HttpDelete("deleteDealsImages")]
         public IActionResult DeleteDealsImage(int idDeals)
@@ -65,12 +84,54 @@ namespace api_for_flutter.Controllers
             var res = _imageService.GetImagesByIdDeals(idDeals);
             return Ok(res);
         }
-      /*  [HttpDelete("clear")]
-        public async Task DeleteAll()
+        /*  [HttpDelete("clear")]
+          public async Task DeleteAll()
+          {
+               _imageService.CleanUpOrphanedImages();
+          }*/
+
+        /** Prize Images */
+
+        [HttpPut("updateTaskImage")]
+        public async Task<IActionResult> UpdatePrizeImage(int idPrize, int idImage)
         {
-             _imageService.CleanUpOrphanedImages();
-        }*/
+            var res = await _imageService.UpdateTaskImage(idPrize, idImage);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
+        [HttpDelete("deletePrizeImages")]
+        public async Task<IActionResult> DeletePrizeImages(int idPrize)
+        {
+            var res = await _imageService.DeletePrizeImages(idPrize);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
+        [HttpGet("getPrizeImage")]
+        public async Task<IActionResult> GetPrizeImage(int idPrize)
+        {
+            var res = await _imageService.GetPrizeImage(idPrize);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

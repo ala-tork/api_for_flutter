@@ -8,8 +8,8 @@ namespace api_for_flutter.Models.PrizesModel
         public string Title { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public string DatePrize { get; set; }
-        public int IdUser { get; set; }
+        public string? DatePrize { get; set; }
+        public int? IdUser { get; set; }
         public int Active { get; set; }
     }
 }

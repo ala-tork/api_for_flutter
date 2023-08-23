@@ -9,6 +9,7 @@ namespace api_for_flutter.Models.ImagesModel
         public string? Type { get; set; }
         public int? IdAds { get; set; }
         public int? IdDeals { get; set; }
+        public int? IdPrize { get; set; }
         public int? IdProduct { get; set; }
         public int Active { get; set; }
     }

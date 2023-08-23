@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NA1y5waYRDOgBqGeNRvR6YzSQjN9SPNom2cGAV6AOcg=",
+  "Hash": "BBq5bs+gTV7K8L4EkNBEpoDjIXill+5fJHwgV+FWyuA=",
   "Source": "api_for_flutter",
   "BasePath": "_content/api_for_flutter",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\17749eb6-8aa3-4348-8738-0964c2b4c50a_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/17749eb6-8aa3-4348-8738-0964c2b4c50a_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\17749eb6-8aa3-4348-8738-0964c2b4c50a_test.jpg"
+    },
     {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\1bdec57c-2376-4efb-94fb-d15d19168947_deals2.png",
       "SourceId": "api_for_flutter",
@@ -34,12 +51,12 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\1bdec57c-2376-4efb-94fb-d15d19168947_deals2.png"
     },
     {
-      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\4bd49acd-2296-4f89-b8d0-7e18ace4144e_test.jpg",
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\77632d36-27ed-4834-9b82-f3a5e11725db_test.jpg",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
       "BasePath": "_content/api_for_flutter",
-      "RelativePath": "Assets/images/4bd49acd-2296-4f89-b8d0-7e18ace4144e_test.jpg",
+      "RelativePath": "Assets/images/77632d36-27ed-4834-9b82-f3a5e11725db_test.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\images\\4bd49acd-2296-4f89-b8d0-7e18ace4144e_test.jpg"
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\77632d36-27ed-4834-9b82-f3a5e11725db_test.jpg"
     },
     {
-      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\7a82faf9-08e5-4e5b-a487-d752dcbc5e1e_test.jpg",
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\78746cce-5d7d-4e96-a0d4-9b14924ad380_test.jpg",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
       "BasePath": "_content/api_for_flutter",
-      "RelativePath": "Assets/images/7a82faf9-08e5-4e5b-a487-d752dcbc5e1e_test.jpg",
+      "RelativePath": "Assets/images/78746cce-5d7d-4e96-a0d4-9b14924ad380_test.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +82,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\images\\7a82faf9-08e5-4e5b-a487-d752dcbc5e1e_test.jpg"
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\78746cce-5d7d-4e96-a0d4-9b14924ad380_test.jpg"
     },
     {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\8b2348dd-d05a-446d-8aed-676b919da91d_msi.webp",
@@ -119,6 +136,91 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\9428ed0b-9542-4265-806d-dd19b425da06_pcprotable.jpg"
     },
     {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\9de40cc9-f454-43b4-96dd-e080a2a6ae7b_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/9de40cc9-f454-43b4-96dd-e080a2a6ae7b_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\9de40cc9-f454-43b4-96dd-e080a2a6ae7b_test.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\ab695629-8d17-4938-8bf4-c1b00daa339e_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/ab695629-8d17-4938-8bf4-c1b00daa339e_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\ab695629-8d17-4938-8bf4-c1b00daa339e_test.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\be52797a-12b6-4229-b5fb-c5e90e080bb6_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/be52797a-12b6-4229-b5fb-c5e90e080bb6_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\be52797a-12b6-4229-b5fb-c5e90e080bb6_test.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\c785f83e-d21c-42b0-9f64-9d22f59eabca_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/c785f83e-d21c-42b0-9f64-9d22f59eabca_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\c785f83e-d21c-42b0-9f64-9d22f59eabca_test.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\d8f15f68-097b-4eb5-9065-be8097f624b6_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/d8f15f68-097b-4eb5-9065-be8097f624b6_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\d8f15f68-097b-4eb5-9065-be8097f624b6_test.jpg"
+    },
+    {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\dab012c1-2120-4176-8c4e-758c201daf45_deals3.png",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
@@ -136,12 +238,12 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\dab012c1-2120-4176-8c4e-758c201daf45_deals3.png"
     },
     {
-      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\dd41dca3-0ca9-4645-a6b1-87bf3828d5ad_test.jpg",
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\eac8585b-50db-41c7-b727-5822619e5c71_test.jpg",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
       "BasePath": "_content/api_for_flutter",
-      "RelativePath": "Assets/images/dd41dca3-0ca9-4645-a6b1-87bf3828d5ad_test.jpg",
+      "RelativePath": "Assets/images/eac8585b-50db-41c7-b727-5822619e5c71_test.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -150,24 +252,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\images\\dd41dca3-0ca9-4645-a6b1-87bf3828d5ad_test.jpg"
-    },
-    {
-      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\e4232970-9202-4049-932a-4fa86dcf14cb_test.jpg",
-      "SourceId": "api_for_flutter",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
-      "BasePath": "_content/api_for_flutter",
-      "RelativePath": "Assets/images/e4232970-9202-4049-932a-4fa86dcf14cb_test.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\images\\e4232970-9202-4049-932a-4fa86dcf14cb_test.jpg"
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\eac8585b-50db-41c7-b727-5822619e5c71_test.jpg"
     },
     {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\f9c078dd-96c1-400c-bf01-8b68fdc57326_pc.jpeg",
@@ -185,23 +270,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\images\\f9c078dd-96c1-400c-bf01-8b68fdc57326_pc.jpeg"
-    },
-    {
-      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\fa8106b9-84e8-4ffd-bb3c-9f4e5c82cc50_hh.png",
-      "SourceId": "api_for_flutter",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
-      "BasePath": "_content/api_for_flutter",
-      "RelativePath": "Assets/images/fa8106b9-84e8-4ffd-bb3c-9f4e5c82cc50_hh.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\images\\fa8106b9-84e8-4ffd-bb3c-9f4e5c82cc50_hh.png"
     }
   ]
 }

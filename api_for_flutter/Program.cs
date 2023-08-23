@@ -12,6 +12,7 @@ using api_for_flutter.Services.FeatureValueServices;
 using api_for_flutter.Services.Iimages_Services;
 using api_for_flutter.Services.Images_Services;
 using api_for_flutter.Services.LikeServices;
+using api_for_flutter.Services.PrizeServices;
 using api_for_flutter.Services.WinnersServices;
 using api_for_flutter.Services.WishListServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -89,6 +90,7 @@ builder.Services.AddScoped<ILikeService,LikeService>();
 builder.Services.AddScoped<IWinnerService,WinnersService>();
 builder.Services.AddScoped<IWishListService, WishListService>();
 builder.Services.AddScoped<IBoostService, BoostService>();
+builder.Services.AddScoped<IPrizeService, PrizeService>();
 
 var app = builder.Build();
 
