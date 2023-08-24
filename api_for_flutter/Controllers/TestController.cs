@@ -292,7 +292,29 @@ namespace api_for_flutter.Controllers
                 query = query.Where(d => d.IdCity == filter.IdCity);
 
             if (filter.IdCategory.HasValue)
-                query = query.Where(d => d.IdCateg == filter.IdCategory);
+            {
+
+                var categoryIds = new List<int> { filter.IdCategory.Value };
+                var categoryStack = new Stack<int>(new[] { filter.IdCategory.Value });
+                while (categoryStack.Count > 0)
+                {
+                    var categoryId = categoryStack.Pop();
+                    var children = await _context.Categories
+                        .Where(c => c.idparent == categoryId)
+                        .Select(c => c.IdCateg)
+                        .ToListAsync();
+                    categoryIds.AddRange(children);
+                    foreach (var child in children)
+                    {
+                        categoryStack.Push(child);
+                    }
+                }
+
+                query = query.Where(d => categoryIds.Contains(d.IdCateg));
+                
+
+            }
+                //query = query.Where(d => d.IdCateg == filter.IdCategory);
 
             if (filter.IdBrans.HasValue)
                 query = query.Where(d => d.IdBrand == filter.IdBrans);
@@ -413,7 +435,31 @@ namespace api_for_flutter.Controllers
                 query = query.Where(a => a.IdCity == filter.IdCity);
 
             if (filter.IdCategory.HasValue)
-                query = query.Where(a => a.IdCateg == filter.IdCategory);
+            {
+
+                var categoryIds = new List<int> { filter.IdCategory.Value };
+                var categoryStack = new Stack<int>(new[] { filter.IdCategory.Value });
+                while (categoryStack.Count > 0)
+                {
+                    var categoryId = categoryStack.Pop();
+                    var children = await _context.Categories
+                        .Where(c => c.idparent == categoryId)
+                        .Select(c => c.IdCateg)
+                        .ToListAsync();
+                    categoryIds.AddRange(children);
+                    foreach (var child in children)
+                    {
+                        categoryStack.Push(child);
+                    }
+                }
+
+                query = query.Where(a => categoryIds.Contains(a.IdCateg));
+
+
+            }
+
+            //if (filter.IdCategory.HasValue)
+            //query = query.Where(a => a.IdCateg == filter.IdCategory);
 
             if (filter.MinPrice.HasValue)
                 query = query.Where(a => a.Price >= filter.MinPrice.Value);
