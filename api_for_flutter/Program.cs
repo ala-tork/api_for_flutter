@@ -1,4 +1,5 @@
 using api_for_flutter.Data;
+using api_for_flutter.Services;
 using api_for_flutter.Services.AdsFeatureSerices;
 using api_for_flutter.Services.AdsServices;
 using api_for_flutter.Services.BoostServices;
@@ -8,6 +9,7 @@ using api_for_flutter.Services.CitiesServices;
 using api_for_flutter.Services.CountryServices;
 using api_for_flutter.Services.DealsServices;
 using api_for_flutter.Services.FeatuesServices;
+using api_for_flutter.Services.FeaturesCategoryServices;
 using api_for_flutter.Services.FeatureValueServices;
 using api_for_flutter.Services.Iimages_Services;
 using api_for_flutter.Services.Images_Services;
@@ -91,6 +93,7 @@ builder.Services.AddScoped<IWinnerService,WinnersService>();
 builder.Services.AddScoped<IWishListService, WishListService>();
 builder.Services.AddScoped<IBoostService, BoostService>();
 builder.Services.AddScoped<IPrizeService, PrizeService>();
+builder.Services.AddScoped<IFeaturesCategoryService, FeaturesCategoryService>();
 
 var app = builder.Build();
 

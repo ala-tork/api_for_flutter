@@ -1,5 +1,5 @@
 ﻿using api_for_flutter.Models.AdsModels;
-using FeatureModels = api_for_flutter.Models.Features;
+using api_for_flutter.Models.FeaturesModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,7 +28,7 @@ namespace api_for_flutter.Models.FeaturesValuesModel
            public int IdF { get; set; }
 
            [ForeignKey("IdF")]
-           public FeatureModels.Features features { get; set; }
+           public Features features { get; set; }
 
         // public int IdAds { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using api_for_flutter.Models.AdsModels;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using FeatureModels = api_for_flutter.Models.Features;
+using FeatureModels = api_for_flutter.Models.FeaturesModel;
 
 namespace api_for_flutter.Models.FeaturesValuesModel
 {

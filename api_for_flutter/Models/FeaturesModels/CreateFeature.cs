@@ -11,7 +11,7 @@ namespace api_for_flutter.Models.FeaturesModels
         public string? Description { get; set; }
         public string Unit { get; set; }
         public int Active { get; set; }
-        public int idCategory { get; set; }
+        //public int idCategory { get; set; }
 
     }
 }

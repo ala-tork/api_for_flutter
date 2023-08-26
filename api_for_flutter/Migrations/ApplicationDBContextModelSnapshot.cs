@@ -381,6 +381,29 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Deals");
                 });
 
+            modelBuilder.Entity("api_for_flutter.Models.FeatureCategory", b =>
+                {
+                    b.Property<int>("IdFC")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFC"));
+
+                    b.Property<int>("IdCategory")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdFeature")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdFC");
+
+                    b.HasIndex("IdCategory");
+
+                    b.HasIndex("IdFeature");
+
+                    b.ToTable("FeatureCategories");
+                });
+
             modelBuilder.Entity("api_for_flutter.Models.Features.Features", b =>
                 {
                     b.Property<int>("IdF")
@@ -403,12 +426,7 @@ namespace api_for_flutter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idCategory")
-                        .HasColumnType("int");
-
                     b.HasKey("IdF");
-
-                    b.HasIndex("idCategory");
 
                     b.ToTable("Features");
                 });
@@ -798,15 +816,23 @@ namespace api_for_flutter.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Features.Features", b =>
+            modelBuilder.Entity("api_for_flutter.Models.FeatureCategory", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Categorie")
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Category")
                         .WithMany()
-                        .HasForeignKey("idCategory")
+                        .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categorie");
+                    b.HasOne("api_for_flutter.Models.Features.Features", "Feature")
+                        .WithMany()
+                        .HasForeignKey("IdFeature")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Feature");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.FeaturesValuesModel.FeaturesValues", b =>

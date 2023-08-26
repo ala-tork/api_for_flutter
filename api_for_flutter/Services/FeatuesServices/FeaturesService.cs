@@ -1,9 +1,8 @@
 ﻿using api_for_flutter.Data;
-using api_for_flutter.Models.Features;
+using api_for_flutter.Models.FeaturesModel;
 using api_for_flutter.Models.FeaturesModels;
 using api_for_flutter.Services.FeatureValueServices;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
 
 namespace api_for_flutter.Services.FeatuesServices
 {
@@ -24,7 +23,7 @@ namespace api_for_flutter.Services.FeatuesServices
                 Title = feature.Title,
                 Description = feature.Description,
                 Unit = feature.Unit,
-                idCategory = feature.idCategory,
+               // idCategory = feature.idCategory,
                 Active = feature.Active,
             };
 
@@ -36,14 +35,18 @@ namespace api_for_flutter.Services.FeatuesServices
 
         public async Task<List<Features>> GetAllFeatures()
         {
-            var featuresList = await _dbContext.Features.Where(f=>f.Active==1).Include(f => f.Categorie).ToListAsync();
+            var featuresList = await _dbContext.Features
+                .Where(f=>f.Active==1)
+                //.Include(f => f.Categorie)
+                .ToListAsync();
             return featuresList;
         }
 
         public async Task<List<Features>> GetAllFeaturesByCategory(int idcategory)
         {
             var featuresList = await _dbContext.Features
-                                              .Where(f => f.idCategory == idcategory && f.Active==1)
+                                              .Where(
+                f => /*f.idCategory == idcategory &&*/ f.Active==1)
                                               .ToListAsync();
 
             return featuresList;

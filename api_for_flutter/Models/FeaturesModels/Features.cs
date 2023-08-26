@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace api_for_flutter.Models.Features
+namespace api_for_flutter.Models.FeaturesModel
 {
     public class Features
     {
@@ -13,8 +13,8 @@ namespace api_for_flutter.Models.Features
         public string Unit { get; set; }
         public int Active { get; set; }
 
-        public int idCategory { get; set; }
+       /* public int idCategory { get; set; }
         [ForeignKey("idCategory")]
-        public Categories? Categorie { get; set; }
+        public Categories? Categorie { get; set; }*/
     }
 }

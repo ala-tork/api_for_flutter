@@ -1,4 +1,4 @@
-﻿using api_for_flutter.Models.Features;
+﻿using api_for_flutter.Models.FeaturesModel;
 using api_for_flutter.Models.FeaturesModels;
 
 namespace api_for_flutter.Services.FeatuesServices

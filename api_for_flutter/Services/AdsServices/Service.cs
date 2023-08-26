@@ -2,7 +2,7 @@
 using api_for_flutter.Models;
 using api_for_flutter.Models.AdsFeaturesModel;
 using api_for_flutter.Models.AdsModels;
-using api_for_flutter.Models.Features;
+using api_for_flutter.Models.FeaturesModel;
 using api_for_flutter.Services.AdsFeatureSerices;
 using api_for_flutter.Services.Images_Services;
 using Microsoft.EntityFrameworkCore;

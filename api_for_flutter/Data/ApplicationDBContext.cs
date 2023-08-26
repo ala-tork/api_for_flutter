@@ -6,7 +6,8 @@ using api_for_flutter.Models.CategoryModels;
 using api_for_flutter.Models.CitiesModels;
 using api_for_flutter.Models.CountriesModel;
 using api_for_flutter.Models.DealsModel;
-using api_for_flutter.Models.Features;
+using api_for_flutter.Models.FeaturesModel;
+using api_for_flutter.Models.FeaturesCategoryModel;
 using api_for_flutter.Models.FeaturesValuesModel;
 using api_for_flutter.Models.ImagesModel;
 using api_for_flutter.Models.LikesPublicationModel;
@@ -31,7 +32,6 @@ namespace api_for_flutter.Data
         public DbSet<Countries> Countries { get; set; }
         public DbSet<Cities> Cities { get; set; } 
         public DbSet<Brands> Brands { get; set; }
-
         public DbSet<Features> Features { get; set; }
         public DbSet<FeaturesValues> FeaturesValues { get; set; }
         public DbSet<AdsFeatures> AdsFeatures { get; set; }
@@ -41,6 +41,8 @@ namespace api_for_flutter.Data
         public DbSet<Prizes> Prizes { get; set; }
         public DbSet<WishList> WishList { get; set; }
         public DbSet<Boosts> Boosts { get; set; }
+        public DbSet<FeatureCategory> FeatureCategories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Ads
@@ -110,26 +112,39 @@ namespace api_for_flutter.Data
                 .HasForeignKey(c => c.idparent)
                 .IsRequired(false);
             //Features
-            modelBuilder.Entity<Features>()
+           /* modelBuilder.Entity<Features>()
                 .HasOne(f => f.Categorie)
                 .WithMany()
-                .HasForeignKey(f => f.idCategory);
+                .HasForeignKey(f => f.idCategory);*/
+
             //Feature Values 
             modelBuilder.Entity<FeaturesValues>()
                 .HasOne(f => f.features)
                 .WithMany()
                 .HasForeignKey(f => f.IdF);
+
+            //FeaturesCaegory
+            modelBuilder.Entity<FeatureCategory>()
+                .HasOne(fc => fc.Category)
+                .WithMany()
+                .HasForeignKey(fc => fc.IdCategory);
+
+            modelBuilder.Entity<FeatureCategory>()
+                .HasOne(fc => fc.Feature)
+                .WithMany()
+                .HasForeignKey(fc => fc.IdFeature);
+
             //AdsFeatures
-                //relation with ads
-          /*  modelBuilder.Entity<AdsFeatures>()
-                .HasOne(af => af.Ads)
-                .WithMany()
-                .HasForeignKey(af => af.IdAds);
-                //relation with Deals
-            modelBuilder.Entity<AdsFeatures>()
-                .HasOne(af => af.Deals)
-                .WithMany()
-                .HasForeignKey(af => af.IdDeals);*/
+            //relation with ads
+            /*  modelBuilder.Entity<AdsFeatures>()
+                  .HasOne(af => af.Ads)
+                  .WithMany()
+                  .HasForeignKey(af => af.IdAds);
+                  //relation with Deals
+              modelBuilder.Entity<AdsFeatures>()
+                  .HasOne(af => af.Deals)
+                  .WithMany()
+                  .HasForeignKey(af => af.IdDeals);*/
 
             modelBuilder.Entity<AdsFeatures>()
                 .HasOne(af => af.features)
