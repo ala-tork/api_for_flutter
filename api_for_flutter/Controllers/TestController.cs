@@ -4,6 +4,7 @@ using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.DealsModel;
 using api_for_flutter.Services.LikeServices;
 using api_for_flutter.Services.WishListServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -418,6 +419,7 @@ namespace api_for_flutter.Controllers
         /** Ads */
 
         [HttpPost("AdsWithLikeAndWishList")]
+        [Authorize]
         public async Task<IActionResult> AdsWithLikeAndWishList([FromBody] AdsFilter filter, int iduser)
         {
             var query = _context.Ads.AsQueryable();

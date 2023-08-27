@@ -48,6 +48,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Assets\images\1bdec57c-2376-4efb-94fb-d15d19168947_deals2.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Assets\images\75c3f6ac-1b2e-4f57-bf19-7fe999c573f0_test.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>api_for_flutter</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/api_for_flutter</BasePath>
+      <RelativePath>Assets/images/75c3f6ac-1b2e-4f57-bf19-7fe999c573f0_test.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Assets\images\75c3f6ac-1b2e-4f57-bf19-7fe999c573f0_test.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Assets\images\78746cce-5d7d-4e96-a0d4-9b14924ad380_test.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>api_for_flutter</SourceId>

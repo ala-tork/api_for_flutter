@@ -41,7 +41,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(s =>
     s.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
@@ -53,6 +52,7 @@ builder.Services.AddSwaggerGen(s =>
         BearerFormat = "JWT",
         Scheme = "bearer"
     }));
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -108,6 +108,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

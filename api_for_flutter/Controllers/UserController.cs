@@ -1,17 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Net;
 using MailKit.Net.Smtp;
 using MimeKit;
-using BCrypt.Net;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -61,7 +53,7 @@ namespace CoolApi.Controllers
                     new Claim("role", user.role.ToString()),
                     new Claim("refreshToken", user.RefreshToken),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -84,6 +76,7 @@ namespace CoolApi.Controllers
             {
                 return BadRequest("Invalid refresh token");
             }
+            user.RefreshToken = GenerateRefreshToken();
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("ABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!Ashsnskajuh");
@@ -104,7 +97,7 @@ namespace CoolApi.Controllers
             };
 
             var newToken = tokenHandler.CreateToken(tokenDescriptor);
-            user.RefreshToken = GenerateRefreshToken();
+            //user.RefreshToken = GenerateRefreshToken();
             _cxt.SaveChanges();
 
             var newRefreshToken = user.RefreshToken; // Get the updated refresh token value
@@ -383,6 +376,105 @@ namespace CoolApi.Controllers
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+
+
+
+        [HttpPost]
+        [Route("verify-token")]
+        public IActionResult VerifyToken([FromBody] TokenVerificationRequest request)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("ABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!Ashsnskajuh");
+
+            try
+            {
+                // Validate the token
+                var tokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero // No tolerance for expired tokens
+                };
+
+                var claimsPrincipal = tokenHandler.ValidateToken(request.Token, tokenValidationParameters, out SecurityToken validatedToken);
+
+                // Token is valid, extract user data from claims if needed
+                // ...
+
+                return Ok("Token is valid.");
+            }
+            catch (SecurityTokenException)
+            {
+                return BadRequest("Invalid token.");
+            }
+        }
+
+
+
+        //[HttpPost]
+        //[Route("verify-token")]
+        //public IActionResult VerifyToken([FromBody] TokenVerificationRequest request)
+        //{
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    var key = Encoding.ASCII.GetBytes("ABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!AshsnskajuhABCDeujujsik@!!Ashsnskajuh");
+
+        //    try
+        //    {
+        //        // Validate the token
+        //        var tokenValidationParameters = new TokenValidationParameters
+        //        {
+        //            ValidateIssuerSigningKey = true,
+        //            IssuerSigningKey = new SymmetricSecurityKey(key),
+        //            ValidateIssuer = false,
+        //            ValidateAudience = false,
+        //            ClockSkew = TimeSpan.Zero // No tolerance for expired tokens
+        //        };
+
+        //        var claimsPrincipal = tokenHandler.ValidateToken(request.Token, tokenValidationParameters, out SecurityToken validatedToken);
+
+        //        // Token is valid, extract user data from claims
+        //        var userIdClaim = claimsPrincipal.FindFirst("id");
+        //        if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
+        //        {
+        //            return BadRequest("Invalid token.");
+        //        }
+
+        //        // Find the user in the database by ID
+        //        var user = _cxt.Users.FirstOrDefault(u => u.Id == userId);
+        //        if (user == null)
+        //        {
+        //            return NotFound("User not found.");
+        //        }
+
+        //        // Check if the refresh token is valid
+        //        if (!IsValidRefreshToken(request.RefreshToken))
+        //        {
+        //            return BadRequest("Invalid refresh token.");
+        //        }
+
+        //        // Generate a new access token
+        //        var newAccessToken = GenerateJwtToken(user);
+
+        //        // Update and save the new refresh token
+        //        user.RefreshToken = GenerateRefreshToken();
+        //        _cxt.SaveChanges();
+
+        //        return Ok(new
+        //        {
+        //            User = user,
+        //            AccessToken = newAccessToken,
+        //            RefreshToken = user.RefreshToken
+        //        });
+        //    }
+        //    catch (SecurityTokenException)
+        //    {
+        //        return BadRequest("Invalid token.");
+        //    }
+        //}
+
 
     }
 }

@@ -3,6 +3,7 @@ using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Services.AdsFeatureSerices;
 using api_for_flutter.Services.AdsServices;
 using api_for_flutter.Services.Images_Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
@@ -40,6 +41,7 @@ namespace api_for_flutter.Controllers
 
 
         [HttpGet("ShowMoreByUser")]
+        [Authorize]
         public IActionResult ShowMoreByUser(int iduser,int page)
         {
             var data = _iservices.ShowMoreByIdUser(iduser,page).ToList();
