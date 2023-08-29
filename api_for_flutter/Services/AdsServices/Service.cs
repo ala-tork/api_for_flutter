@@ -55,9 +55,11 @@ namespace api_for_flutter.Services.AdsServices
         public List<Ads> GetAds()
         {
 
-            var ads = _context.Ads.Where(a=>a.Active==1).Include(a => a.Categories)
-                .Include(a => a.Countries)
-                .Include(a => a.Cities).ToList();
+            var ads = _context.Ads.Where(a=>a.Active==1)
+                .Include(a => a.Categories)
+                //.Include(a => a.Countries)
+                //.Include(a => a.Cities)
+                .ToList();
 
             return ads;
         }
@@ -77,10 +79,10 @@ namespace api_for_flutter.Services.AdsServices
                 var ads = query.OrderBy(a => a.IdAds) 
                                .Skip(page * pageSize)
                                .Take(pageSize)
-                               .Include(a=>a.user)
-                               .Include(a => a.Categories)
-                               .Include(a => a.Countries)
-                               .Include(a => a.Cities)
+                               //.Include(a=>a.user)
+                               //.Include(a => a.Categories)
+                               //.Include(a => a.Countries)
+                               //.Include(a => a.Cities)
                                .ToList();
                 return ads;
             
@@ -89,10 +91,10 @@ namespace api_for_flutter.Services.AdsServices
         public Ads GetAdById(int id)
         {
             return _context.Ads.Where(a => a.Active == 1)
-                .Include(a => a.user)
-                .Include(a => a.Categories)
-                .Include(a => a.Countries)
-                .Include(a => a.Cities)
+                //.Include(a => a.user)
+                //.Include(a => a.Categories)
+               // .Include(a => a.Countries)
+               // .Include(a => a.Cities)
                 .FirstOrDefault(a => a.IdAds == id);
         }
 
@@ -120,10 +122,10 @@ namespace api_for_flutter.Services.AdsServices
                .OrderBy(a => a.IdAds)
                .Skip(page * pageSize)
                .Take(pageSize)
-               .Include(a => a.user)
-               .Include(a => a.Categories)
-               .Include(a => a.Countries)
-               .Include(a => a.Cities)
+              // .Include(a => a.user)
+              // .Include(a => a.Categories)
+              // .Include(a => a.Countries)
+              // .Include(a => a.Cities)
                .ToList();
             return ads;
         }

@@ -438,7 +438,6 @@ namespace api_for_flutter.Controllers
 
             if (filter.IdCategory.HasValue)
             {
-
                 var categoryIds = new List<int> { filter.IdCategory.Value };
                 var categoryStack = new Stack<int>(new[] { filter.IdCategory.Value });
                 while (categoryStack.Count > 0)

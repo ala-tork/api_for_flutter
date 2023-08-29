@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\Assets\\images\\1bdec57c-2376-4efb-94fb-d15d19168947_deals2.png"
     },
     {
+      "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\1e2705b3-60c0-4c61-930d-a5242370bcdc_test.jpg",
+      "PackagePath": "staticwebassets\\Assets\\images\\1e2705b3-60c0-4c61-930d-a5242370bcdc_test.jpg"
+    },
+    {
+      "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\3f70329c-d430-4249-807a-cc9f1eb300d4_test.jpg",
+      "PackagePath": "staticwebassets\\Assets\\images\\3f70329c-d430-4249-807a-cc9f1eb300d4_test.jpg"
+    },
+    {
+      "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\5911dc39-a056-475c-bc5d-d11703378229_test.jpg",
+      "PackagePath": "staticwebassets\\Assets\\images\\5911dc39-a056-475c-bc5d-d11703378229_test.jpg"
+    },
+    {
       "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\75c3f6ac-1b2e-4f57-bf19-7fe999c573f0_test.jpg",
       "PackagePath": "staticwebassets\\Assets\\images\\75c3f6ac-1b2e-4f57-bf19-7fe999c573f0_test.jpg"
     },
@@ -35,6 +47,10 @@
     {
       "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\9428ed0b-9542-4265-806d-dd19b425da06_pcprotable.jpg",
       "PackagePath": "staticwebassets\\Assets\\images\\9428ed0b-9542-4265-806d-dd19b425da06_pcprotable.jpg"
+    },
+    {
+      "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\b1e3480a-c708-44ac-8934-c93b6b8c732a_Torkhani_Ala.jpg",
+      "PackagePath": "staticwebassets\\Assets\\images\\b1e3480a-c708-44ac-8934-c93b6b8c732a_Torkhani_Ala.jpg"
     },
     {
       "Id": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\be52797a-12b6-4229-b5fb-c5e90e080bb6_test.jpg",

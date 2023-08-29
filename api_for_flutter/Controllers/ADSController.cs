@@ -51,7 +51,8 @@ namespace api_for_flutter.Controllers
                 ListAds = data,
                 nbitems = nbitems,
 
-            });
+            }
+            );
         }
 
         [HttpGet("NbrAdsByUser")]

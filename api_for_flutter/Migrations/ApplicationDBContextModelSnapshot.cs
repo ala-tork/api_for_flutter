@@ -381,7 +381,7 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Deals");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.FeatureCategory", b =>
+            modelBuilder.Entity("api_for_flutter.Models.FeaturesCategoryModel.FeatureCategory", b =>
                 {
                     b.Property<int>("IdFC")
                         .ValueGeneratedOnAdd()
@@ -404,7 +404,7 @@ namespace api_for_flutter.Migrations
                     b.ToTable("FeatureCategories");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.Features.Features", b =>
+            modelBuilder.Entity("api_for_flutter.Models.FeaturesModel.Features", b =>
                 {
                     b.Property<int>("IdF")
                         .ValueGeneratedOnAdd()
@@ -578,6 +578,9 @@ namespace api_for_flutter.Migrations
                     b.Property<DateTime>("DateInscription")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RefreshToken")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -688,7 +691,7 @@ namespace api_for_flutter.Migrations
 
             modelBuilder.Entity("api_for_flutter.Models.AdsFeaturesModel.AdsFeatures", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.Features.Features", "features")
+                    b.HasOne("api_for_flutter.Models.FeaturesModel.Features", "features")
                         .WithMany()
                         .HasForeignKey("IdFeature");
 
@@ -816,7 +819,7 @@ namespace api_for_flutter.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("api_for_flutter.Models.FeatureCategory", b =>
+            modelBuilder.Entity("api_for_flutter.Models.FeaturesCategoryModel.FeatureCategory", b =>
                 {
                     b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Category")
                         .WithMany()
@@ -824,7 +827,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("api_for_flutter.Models.Features.Features", "Feature")
+                    b.HasOne("api_for_flutter.Models.FeaturesModel.Features", "Feature")
                         .WithMany()
                         .HasForeignKey("IdFeature")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -837,7 +840,7 @@ namespace api_for_flutter.Migrations
 
             modelBuilder.Entity("api_for_flutter.Models.FeaturesValuesModel.FeaturesValues", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.Features.Features", "features")
+                    b.HasOne("api_for_flutter.Models.FeaturesModel.Features", "features")
                         .WithMany()
                         .HasForeignKey("IdF")
                         .OnDelete(DeleteBehavior.Cascade)

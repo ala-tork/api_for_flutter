@@ -49,7 +49,8 @@ namespace api_for_flutter.Services.AdsFeatureSerices
         {
             var res = await _dbContext.AdsFeatures.Where(af => af.IdAds == idAds)
                                                 .Include(af=>af.features)
-                                                .Include(af=>af.FeaturesValues).ToListAsync();
+                                                .Include(af=>af.FeaturesValues)
+                                                .ToListAsync();
             return res;
         }
 
