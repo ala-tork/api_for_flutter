@@ -42,9 +42,9 @@ namespace api_for_flutter.Controllers
 
         [HttpGet("ShowMoreByUser")]
         [Authorize]
-        public IActionResult ShowMoreByUser(int iduser,int page)
+        public IActionResult ShowMoreByUser(int iduser,int page,int pagesize)
         {
-            var data = _iservices.ShowMoreByIdUser(iduser,page).ToList();
+            var data = _iservices.ShowMoreByIdUser(iduser,page, pagesize).ToList();
             var nbitems = _iservices.NbrAdsByIdUser(iduser);
             return Ok(new
             {

@@ -91,9 +91,9 @@ namespace api_for_flutter.Services.DealsServices
             return _context.Deals.Where(d=>d.Active == 1).Skip(skip).Take(pageSize).ToList();
         }
 
-        public List<Deals> ShowMoreByIdUser(int iduser, int page = 0)
+        public List<Deals> ShowMoreByIdUser(int iduser, int page = 0,int pageSize=4)
         {
-            const int pageSize = 4; 
+            //const int pageSize = 4; 
             var skip = page * pageSize;
             return _context.Deals
                 .Where(d => d.IdUser == iduser && d.Active == 1)

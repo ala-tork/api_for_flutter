@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using api_for_flutter.Models.UserModel;
 using api_for_flutter.Data;
+using api_for_flutter.Services.UserServices;
 
 namespace CoolApi.Controllers
 
@@ -21,10 +22,12 @@ namespace CoolApi.Controllers
     {
 
         private readonly ApplicationDBContext _cxt;
+        private readonly IUserService _userService;
 
-        public UserController(ApplicationDBContext context)
+        public UserController(ApplicationDBContext context , IUserService userService)
         {
             _cxt = context;
+            _userService = userService;
         }
 
         private bool VerifyPassword(string enteredPassword, string storedHashedPassword)
@@ -411,6 +414,19 @@ namespace CoolApi.Controllers
                 return BadRequest("Invalid token.");
             }
         }
+
+        [HttpPut]
+        [Route("AddImageUser")]
+        public async Task<IActionResult> AddUserImage(IFormFile img, int idUser)
+        {
+            var res = await _userService.AddUserImage(img, idUser);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return NotFound("User Not Found");
+        }
+
 
 
 

@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace api_for_flutter.Models.UserModel
 {
@@ -11,11 +11,11 @@ namespace api_for_flutter.Models.UserModel
         public string firstname { get; set; } = "";
         public string lastname { get; set; } = "";
         public string? ImageUrl { get; set; }
-        public string phone { get; set; } = "";
-        public string country { get; set; } = "";
-        public string address { get; set; } = "";
+        public string? phone { get; set; } = "";
+        public string? country { get; set; } = "";
+        public string? address { get; set; } = "";
         public string role { get; set; } = "User";
-        public DateTime DateInscription { get; set; } = DateTime.Today;
+        public string DateInscription { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
         public int active { get; set; } = 0;
         public string RefreshToken { get; set; } = "";
 

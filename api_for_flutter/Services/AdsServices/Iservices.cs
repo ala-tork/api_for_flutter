@@ -7,7 +7,7 @@ namespace api_for_flutter.Services.AdsServices
     {
         List<Ads> GetAds();
         public List<Ads> ShowMore(int page = 0);
-        public List<Ads> ShowMoreByIdUser(int iduser,int page = 0);
+        public List<Ads> ShowMoreByIdUser(int iduser,int page = 0,int pagesize=4);
         Task<Ads> CreateAdd(CreateAds ad);
         Ads GetAdById(int id);
         int NbrAds();

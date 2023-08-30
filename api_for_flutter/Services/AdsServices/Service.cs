@@ -111,9 +111,9 @@ namespace api_for_flutter.Services.AdsServices
             return res;
         }
 
-        public List<Ads> ShowMoreByIdUser(int iduser,int page)
+        public List<Ads> ShowMoreByIdUser(int iduser,int page, int pageSize)
         {
-            int pageSize = 4;
+           // int pageSize = 4;
 
             var query = _context.Ads.AsQueryable();
 

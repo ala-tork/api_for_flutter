@@ -26,9 +26,9 @@ namespace api_for_flutter.Controllers
 
 
         [HttpGet("showmore/{iduser}")]
-        public ActionResult<List<Deals>> ShowMoreByIdUser(int iduser, int page = 0)
+        public ActionResult<List<Deals>> ShowMoreByIdUser(int iduser, int page = 0, int pageSize=4)
         {
-            var deals = _dealsService.ShowMoreByIdUser(iduser, page);
+            var deals = _dealsService.ShowMoreByIdUser(iduser, page,pageSize);
             var nbItems = _dealsService.NbrDealsByIdUser(iduser);
             return Ok(new
             {
