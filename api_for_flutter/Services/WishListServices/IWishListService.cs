@@ -11,6 +11,7 @@ namespace api_for_flutter.Services.WishListServices
         Task<List<WishList>>? GetWishListByIdUser(int Iduser, int page , int pageSize);
         int NbrAdsByIdUser(int iduser);
         Task<WishList?> GetWishListByIdUserIdAd(int Iduser, int idAd);
-        Task<WishList?> GetWishListByIdUserIdDeal(int Iduser, int idAd);
+        Task<WishList?> GetWishListByIdUserIdDeal(int Iduser, int idDeal);
+        Task<WishList?> GetWishListByIdUserIdProd(int Iduser, int idProd);
     }
 }

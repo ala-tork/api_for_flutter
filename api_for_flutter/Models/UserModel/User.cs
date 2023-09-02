@@ -17,6 +17,10 @@ namespace api_for_flutter.Models.UserModel
         public string role { get; set; } = "User";
         public string DateInscription { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
         public int active { get; set; } = 0;
+        public int isPro { get; set; } = 0;
+        public int isverified { get; set; } = 0;
+        public int isPremium { get; set; } = 0;
+        public int NbDiamon { get; set; } = 0;
         public string RefreshToken { get; set; } = "";
 
 

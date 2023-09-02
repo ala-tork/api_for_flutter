@@ -1,5 +1,7 @@
 ﻿using api_for_flutter.Data;
+using api_for_flutter.Migrations;
 using api_for_flutter.Models.AdsModels;
+using api_for_flutter.Models.DealsModel;
 using api_for_flutter.Models.ImagesModel;
 using api_for_flutter.Services.Images_Services;
 using Microsoft.EntityFrameworkCore;
@@ -211,6 +213,54 @@ namespace api_for_flutter.Services.Iimages_Services
         public async Task<Images> GetPrizeImage(int idprize)
         {
             var images = await  _dbcontext.Images.FirstOrDefaultAsync(img => img.IdPrize == idprize && img.Active == 1);
+            return images;
+        }
+
+
+        //Products
+
+        public async Task<Images> UpdateProductImages(int idProduct, int idImages)
+        {
+            var img = await _dbcontext.Images.FirstOrDefaultAsync(i => i.IdImage == idImages && i.Active == 1);
+            if (img != null)
+            {
+                img.IdProduct = idProduct;
+                _dbcontext.Entry(img).State = EntityState.Modified;
+                await _dbcontext.SaveChangesAsync();
+                return img;
+            }
+            else
+                return null;
+        }
+
+        public Images DeleteProductImages(int idProduct)
+        {
+            var imagesToDelete = _dbcontext.Images.Where(img => img.IdProduct == idProduct).ToList();
+
+            if (imagesToDelete.Count > 0)
+            {
+                foreach (var img in imagesToDelete)
+                {
+                    string imagePath = Path.Combine(_configuration["AssetsFolder:ImagesFolder"].ToString(), img.Title);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+
+                    _dbcontext.Images.RemoveRange(img);
+                    _dbcontext.SaveChanges();
+
+                }
+
+                return imagesToDelete[0];
+            }
+
+            return null;
+        }
+
+        public List<Images> GetImagesByIdProduct(int idProduct)
+        {
+            var images = _dbcontext.Images.Where(img => img.IdProduct == idProduct && img.Active == 1).ToList();
             return images;
         }
 

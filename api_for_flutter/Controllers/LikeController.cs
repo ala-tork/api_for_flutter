@@ -95,6 +95,19 @@ namespace api_for_flutter.Controllers
             return Ok(like);
         }
 
+        // GET: api/Like/Byprod/5
+        [HttpGet("ByProd/{id}")]
+        public async Task<IActionResult> GetLikeByprodId(int id)
+        {
+            var like = await _likeService.GetLikeByIdProd(id);
+            if (like == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(like);
+        }
+
         // GET: api/Like/ByDeal
         [HttpGet("ByDeal")]
         public async Task<IActionResult> GetLikeByDeal(int id)
@@ -142,6 +155,21 @@ namespace api_for_flutter.Controllers
             return Ok(likeInfo);
         }
 
+        // GET: api/like/ByUserAndProd
+        [HttpGet("ByUserAndprod/{idUser}/{idAd}")]
+        public async Task<IActionResult> GetLikeByIdUserAndIdProd(int idUser, int idProddAd)
+        {
+            var like = await _likeService.GetLikeByIdUserIdProd(idUser, idProddAd);
+            var nbLike = await _likeService.GetLikeByIdProd(idProddAd);
+
+            var likeInfo = new
+            {
+                NbLike = nbLike.Count(),
+                Like = like
+            };
+
+            return Ok(likeInfo);
+        }
 
     }
 }

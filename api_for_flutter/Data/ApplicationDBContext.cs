@@ -16,8 +16,9 @@ using api_for_flutter.Models.UserModel;
 using api_for_flutter.Models.WinnersModel;
 using api_for_flutter.Models.WishListModel;
 using Microsoft.EntityFrameworkCore;
-
-
+using api_for_flutter.Models.ProductModel;
+using api_for_flutter.Models.MagasinModel;
+using api_for_flutter.Models.SettingModel;
 
 namespace api_for_flutter.Data
 {
@@ -42,7 +43,9 @@ namespace api_for_flutter.Data
         public DbSet<WishList> WishList { get; set; }
         public DbSet<Boosts> Boosts { get; set; }
         public DbSet<FeatureCategory> FeatureCategories { get; set; }
-
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Magasin> Magasins { get; set; }
+        public DbSet<Setting> Setting { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Ads
@@ -104,7 +107,48 @@ namespace api_for_flutter.Data
                 .HasOne(d => d.Boosts)
                 .WithMany()
                 .HasForeignKey(d => d.IdBoost);
+            modelBuilder.Entity<Product>()
+                .HasOne(d => d.Brands)
+                .WithMany()
+                .HasForeignKey(d => d.IdBrand)
+                .OnDelete(DeleteBehavior.NoAction);
+            //Product
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Countries)
+                .WithMany()
+                .HasForeignKey(p => p.IdCountry)
+                .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Categories)
+                .WithMany()
+                .HasForeignKey(p => p.IdCateg)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Cities)
+                .WithMany()
+                .HasForeignKey(p => p.IdCity)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.user)
+                .WithMany()
+                .HasForeignKey(p => p.IdUser)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Prizes)
+                .WithMany()
+                .HasForeignKey(p => p.IdPrize)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Boosts)
+                .WithMany()
+                .HasForeignKey(p => p.IdBoost);
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Brands)
+                .WithMany()
+                .HasForeignKey(p => p.IdBrand)
+                .OnDelete(DeleteBehavior.NoAction);
             // Category
             modelBuilder.Entity<Categories>()
                 .HasMany(c => c.Children)
@@ -169,6 +213,10 @@ namespace api_for_flutter.Data
                 .HasOne(i => i.Prizes)
                 .WithMany()
                 .HasForeignKey(i => i.IdPrize);
+            modelBuilder.Entity<Images>()
+                .HasOne(i => i.Product)
+                .WithMany()
+                .HasForeignKey(i => i.IdProduct);
             // Like
             modelBuilder.Entity<Like>()
                 .HasOne(l => l.user)
@@ -182,6 +230,10 @@ namespace api_for_flutter.Data
                 .HasOne(l => l.Ads)
                 .WithMany()
                 .HasForeignKey(l => l.IdAd);
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.product)
+                .WithMany()
+                .HasForeignKey(l => l.IdProd);
 
             //Winners 
             modelBuilder.Entity<Winners>()
@@ -189,7 +241,7 @@ namespace api_for_flutter.Data
                 .WithMany()
                 .HasForeignKey(w => w.IdUser);
             modelBuilder.Entity<Winners>()
-                .HasOne(w => w.Prizes)
+                .HasOne(w => w.prizes)
                 .WithMany()
                 .HasForeignKey(w => w.IdPrize)
                 .OnDelete(DeleteBehavior.NoAction);
@@ -216,6 +268,11 @@ namespace api_for_flutter.Data
                 .HasOne(w => w.deals)
                 .WithMany()
                 .HasForeignKey(w => w.IdDeal);
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(w => w.Product)
+                .WithMany()
+                .HasForeignKey(w => w.IdProd);
 
 
 

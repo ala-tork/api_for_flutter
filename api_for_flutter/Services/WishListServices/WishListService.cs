@@ -55,6 +55,7 @@ namespace api_for_flutter.Services.WishListServices
                 .Where(w => w.IdUser == Iduser)
                 .Include(w => w.ads)
                 .Include(w=>w.deals)
+                .Include(w=>w.Product)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -79,6 +80,15 @@ namespace api_for_flutter.Services.WishListServices
         {
             var wishList = await _dbcontext.WishList.FirstOrDefaultAsync(
                 wl => wl.IdUser == Iduser && wl.IdDeal == idDeal
+            );
+
+            return wishList;
+        }
+
+        public async Task<WishList?> GetWishListByIdUserIdProd(int Iduser, int idProd)
+        {
+            var wishList = await _dbcontext.WishList.FirstOrDefaultAsync(
+                wl => wl.IdUser == Iduser && wl.IdProd == idProd
             );
 
             return wishList;

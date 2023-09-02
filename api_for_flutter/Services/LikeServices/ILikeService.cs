@@ -13,7 +13,9 @@ namespace api_for_flutter.Services.LikeServices
         Task<List<Like>?> GetLikeByAds();
 
         Task<Like?> GetLikeByIdUserIdAd(int Iduser,int idAd);
-        Task<Like?> GetLikeByIdUserIdDeal(int Iduser, int idAd);
+        Task<Like?> GetLikeByIdUserIdDeal(int Iduser, int idDeal);
+        Task<Like?> GetLikeByIdUserIdProd(int Iduser, int idProd);
+        Task<List<Like>?> GetLikeByIdProd(int idProd);
 
 
     }

@@ -15,6 +15,8 @@ using api_for_flutter.Services.Iimages_Services;
 using api_for_flutter.Services.Images_Services;
 using api_for_flutter.Services.LikeServices;
 using api_for_flutter.Services.PrizeServices;
+using api_for_flutter.Services.ProductServices;
+using api_for_flutter.Services.SettingServices;
 using api_for_flutter.Services.UserServices;
 using api_for_flutter.Services.WinnersServices;
 using api_for_flutter.Services.WishListServices;
@@ -96,6 +98,9 @@ builder.Services.AddScoped<IBoostService, BoostService>();
 builder.Services.AddScoped<IPrizeService, PrizeService>();
 builder.Services.AddScoped<IFeaturesCategoryService, FeaturesCategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISettingService, SettingService>();
+builder.Services.AddScoped<IProductService,ProductService>();
+
 
 var app = builder.Build();
 
@@ -116,3 +121,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

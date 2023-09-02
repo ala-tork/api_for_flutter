@@ -1,4 +1,6 @@
 ﻿using api_for_flutter.Data;
+using api_for_flutter.Models.PrizeModel;
+using api_for_flutter.Models.UserModel;
 using api_for_flutter.Models.WinnersModel;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,14 +33,19 @@ namespace api_for_flutter.Services.WinnersServices
 
         public async Task<List<Winners>> GetRandomWinners()
         {
+            int numberOfRandomWinners = 2;
+
             var randomWinners = await _dbContext.Winners
+                .FromSqlRaw($"SELECT TOP {numberOfRandomWinners} * FROM Winners ORDER BY CHECKSUM(NEWID())")
+                .Include(winner => winner.prizes)
+                .Include(winner => winner.user)
                 .ToListAsync();
 
-            var random = new Random();
-            var shuffledWinners = randomWinners.OrderBy(r => random.Next()).Take(2).ToList();
-
-            return shuffledWinners;
+            return randomWinners;
         }
+
+
+
 
 
 

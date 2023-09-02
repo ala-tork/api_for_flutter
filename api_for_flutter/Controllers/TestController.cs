@@ -2,6 +2,7 @@
 using api_for_flutter.Models;
 using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.DealsModel;
+using api_for_flutter.Models.ProductModel;
 using api_for_flutter.Services.LikeServices;
 using api_for_flutter.Services.WishListServices;
 using Microsoft.AspNetCore.Authorization;
@@ -547,6 +548,380 @@ namespace api_for_flutter.Controllers
             });
         }
 
+        /** Product */
+
+        [HttpPost("ProdWithLikeAndWishList")]
+        public async Task<IActionResult> ProdWithLikeAndWishList([FromBody] FilterProduct filter, int iduser)
+        {
+            var query = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.productName))
+            {
+                var prodNameLower = filter.productName.ToLower();
+                query = query.Where(a => a.Title.ToLower().Contains(prodNameLower));
+            }
+            if (!string.IsNullOrEmpty(filter.codeBar))
+            {
+                query = query.Where(a => a.CodeBar==filter.codeBar);
+            }
+            if (!string.IsNullOrEmpty(filter.codeProd))
+            {
+                query = query.Where(a => a.CodeProduct == filter.codeProd);
+            }
+
+            if (!string.IsNullOrEmpty(filter.reference))
+            {
+                query = query.Where(a => a.Reference == filter.reference);
+            }
+            if (filter.IdCountrys.HasValue)
+                query = query.Where(a => a.IdCountry == filter.IdCountrys);
+
+            if (filter.IdCity.HasValue)
+                query = query.Where(a => a.IdCity == filter.IdCity);
+
+            if (filter.IdCategory.HasValue)
+            {
+                var categoryIds = new List<int> { filter.IdCategory.Value };
+                var categoryStack = new Stack<int>(new[] { filter.IdCategory.Value });
+                while (categoryStack.Count > 0)
+                {
+                    var categoryId = categoryStack.Pop();
+                    var children = await _context.Categories
+                        .Where(c => c.idparent == categoryId)
+                        .Select(c => c.IdCateg)
+                        .ToListAsync();
+                    categoryIds.AddRange(children);
+                    foreach (var child in children)
+                    {
+                        categoryStack.Push(child);
+                    }
+                }
+
+                query = query.Where(a => categoryIds.Contains(a.IdCateg));
+
+
+            }
+
+            if (filter.IdBrans.HasValue)
+                query = query.Where(d => d.IdBrand == filter.IdBrans);
+
+            if (filter.MinPrice.HasValue)
+                query = query.Where(a => a.Price >= filter.MinPrice.Value);
+
+            if (filter.MaxPrice.HasValue)
+                query = query.Where(a => a.Price <= filter.MaxPrice.Value);
+
+            if (filter.IdFeaturesValues != null && filter.IdFeaturesValues.Any())
+            {
+                foreach (var featureValue in filter.IdFeaturesValues)
+                {
+                    query = query.Where(a => _context.AdsFeatures
+                        .Where(af => af.IdProduct == a.IdProd && af.IdFeaturesValues == featureValue)
+                        .Any());
+                }
+            }
+
+            int totalItems = query.Count();
+
+            var pageSize = 4;
+
+            if (filter.PageNumber == 0)
+            {
+                filter.PageNumber = 1;
+            }
+
+            List<ViewProduct> paginatedProd = await query
+                //.Include(a => a.Categories)
+                //.Include(a => a.Countries)
+                // .Include(a => a.Cities)
+                .Where(a => a.Active == 1)
+                .Skip((filter.PageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(d => new ViewProduct
+                {
+                    IdProd = d.IdProd,
+                    CodeBar=d.CodeBar,
+                    CodeProduct=d.CodeProduct,
+                    Reference=d.Reference,
+                    Title = d.Title,
+                    Description = d.Description,
+                    Details = d.Details,
+                    Price = d.Price,
+                    Qte=d.Qte,
+                    Color=d.Color,
+                    Tax=d.Tax,
+                    Discount=d.Discount,
+                    IdMagasin=d.IdMagasin,
+                    DatePublication = d.DatePublication,
+                    ImagePrincipale = d.ImagePrincipale,
+                    VideoName = d.VideoName,
+                    IdCateg = d.IdCateg,
+                    IdPrize=d.IdPrize,
+
+                   // Categories = d.Categories,
+                    IdUser = d.IdUser,
+                   // user = d.user,
+                    IdCountry = d.IdCountry,
+                    //Countries = d.Countries,
+                    IdCity = d.IdCity,
+                   // Cities = d.Cities,
+                    IdBoost = d.IdBoost,
+                    Active = d.Active,
+                })
+                .ToListAsync();
+
+            foreach (var item in paginatedProd)
+            {
+                var likesForProd = await _likeService.GetLikeByIdProd(item.IdProd);
+                int likeCount = likesForProd?.Count() ?? 0;
+                item.NbLike = likeCount;
+                var liked = await _likeService.GetLikeByIdUserIdProd(iduser, item.IdProd);
+                if (liked != null)
+                {
+                    item.IdLike = liked.IdLP;
+                }
+
+                var wishList = await _wishListService.GetWishListByIdUserIdProd(iduser, item.IdProd);
+                if (wishList != null)
+                {
+                    item.IdWishList = wishList.Idwish;
+                }
+
+            }
+
+            return Ok(new
+            {
+                TotalItems = totalItems,
+                PageNumber = filter.PageNumber,
+                PageSize = pageSize,
+                products = paginatedProd
+            });
+        }
+
+
+
+        /**       Get Items With user Id and Pagination            **/
+
+        [HttpPost("DealsByUser")]
+        public async Task<IActionResult> DealsByUser([FromBody] DealsFilter filter, int iduser)
+        {
+            var query = _context.Deals.AsQueryable();
+            query = query.Where(a => a.IdUser == iduser);
+            int totalItems = query.Count();
+            var pageSize = 4;
+            if (filter.PageNumber == 0)
+            {
+                filter.PageNumber = 1;
+            }
+
+            List<ViewDeals> paginatedAds = await query
+                .Where(d => d.Active == 1)
+                .Skip((filter.PageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(d => new ViewDeals
+                {
+                    IdDeal = d.IdDeal,
+                    Title = d.Title,
+                    Description = d.Description,
+                    Details = d.Details,
+                    Price = d.Price,
+                    Discount = d.Discount,
+                    Quantity = d.Quantity,
+                    IdPricesDelevery = d.IdPricesDelevery,
+                    DatePublication = d.DatePublication,
+                    DateEND = d.DateEND,
+                    ImagePrinciple = d.ImagePrinciple,
+                    VideoName = d.VideoName,
+                    IdCateg = d.IdCateg,
+                    Categories = d.Categories,
+                    IdUser = d.IdUser,
+                    IdCountrys = d.IdCountrys,
+                    IdCity = d.IdCity,
+                    IdBrand = d.IdBrand,
+                    Brands = d.Brands,
+                    IdPrize = d.IdPrize,
+                    Locations = d.Locations,
+                    IdBoost = d.IdBoost,
+                    Active = d.Active,
+                })
+                .ToListAsync();
+
+            foreach (var item in paginatedAds)
+            {
+                var likesForDeal = await _likeService.GetLikeByIdDeal(item.IdDeal);
+                int likeCount = likesForDeal?.Count(l => l.IdDeal == item.IdDeal) ?? 0;
+                item.NbLike = likeCount;
+                var liked = await _likeService.GetLikeByIdUserIdDeal(iduser, item.IdDeal);
+                if (liked != null)
+                {
+                    item.IdLike = liked.IdLP;
+                }
+
+                var wishList = await _wishListService.GetWishListByIdUserIdDeal(iduser, item.IdDeal);
+                if (wishList != null)
+                {
+                    item.IdWishList = wishList.Idwish;
+                }
+            }
+
+            return Ok(new
+            {
+                TotalItems = totalItems,
+                PageNumber = filter.PageNumber,
+                PageSize = pageSize,
+                Deals = paginatedAds
+            });
+        }
+
+
+
+        /** Ads */
+
+        [HttpPost("AdsByUserId")]
+        public async Task<IActionResult> AdsByUserId([FromBody] AdsFilter filter, int iduser)
+        {
+            var query = _context.Ads.AsQueryable();
+            query = query.Where(a=> a.IdUser == iduser);
+            int totalItems = query.Count();
+
+            var pageSize = 4;
+
+            if (filter.PageNumber == 0)
+            {
+                filter.PageNumber = 1;
+            }
+
+            List<AdsView> paginatedAds = await query
+                .Where(a => a.Active == 1)
+                .Skip((filter.PageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(d => new AdsView
+                {
+                    IdAds = d.IdAds,
+                    Title = d.Title,
+                    Description = d.Description,
+                    details = d.details,
+                    Price = d.Price,
+                    //IdPricesDelevery = d.IdPricesDelevery,
+                    DatePublication = d.DatePublication,
+                    ImagePrinciple = d.ImagePrinciple,
+                    VideoName = d.VideoName,
+                    IdCateg = d.IdCateg,
+                    Categories = d.Categories,
+                    IdUser = d.IdUser,
+                    user = d.user,
+                    IdCountrys = d.IdCountrys,
+                    Countries = d.Countries,
+                    IdCity = d.IdCity,
+                    Cities = d.Cities,
+                    Locations = d.Locations,
+                    IdBoost = d.IdBoost,
+                    Active = d.Active,
+                })
+                .ToListAsync();
+
+            foreach (var item in paginatedAds)
+            {
+                var likesForDeal = await _likeService.GetLikeByIdAd(item.IdAds);
+                int likeCount = likesForDeal?.Count() ?? 0;
+                item.NbLike = likeCount;
+                var liked = await _likeService.GetLikeByIdUserIdAd(iduser, item.IdAds);
+                if (liked != null)
+                {
+                    item.IdLike = liked.IdLP;
+                }
+
+                var wishList = await _wishListService.GetWishListByIdUserIdAd(iduser, item.IdAds);
+                if (wishList != null)
+                {
+                    item.IdWishList = wishList.Idwish;
+                }
+
+            }
+
+            return Ok(new
+            {
+                TotalItems = totalItems,
+                PageNumber = filter.PageNumber,
+                PageSize = pageSize,
+                Ads = paginatedAds
+            });
+        }
+
+        /** Product */
+
+        [HttpPost("ProdByUserId")]
+        public async Task<IActionResult> ProdByUserId([FromBody] FilterProduct filter, int iduser)
+        {
+            var query = _context.Products.AsQueryable();
+            query = query.Where(a => a.IdUser == iduser);
+            int totalItems = query.Count();
+
+            var pageSize = 4;
+
+            if (filter.PageNumber == 0)
+            {
+                filter.PageNumber = 1;
+            }
+
+            List<ViewProduct> paginatedProd = await query
+                .Where(a => a.Active == 1)
+                .Skip((filter.PageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(d => new ViewProduct
+                {
+                    IdProd = d.IdProd,
+                    CodeBar = d.CodeBar,
+                    CodeProduct = d.CodeProduct,
+                    Reference = d.Reference,
+                    Title = d.Title,
+                    Description = d.Description,
+                    Details = d.Details,
+                    Price = d.Price,
+                    Qte = d.Qte,
+                    Color = d.Color,
+                    Tax = d.Tax,
+                    Discount = d.Discount,
+                    IdMagasin = d.IdMagasin,
+                    DatePublication = d.DatePublication,
+                    ImagePrincipale = d.ImagePrincipale,
+                    VideoName = d.VideoName,
+                    IdCateg = d.IdCateg,
+                    IdUser = d.IdUser,
+                    IdCountry = d.IdCountry,
+                    IdCity = d.IdCity,
+                    IdBoost = d.IdBoost,
+                    Active = d.Active,
+                })
+                .ToListAsync();
+
+            foreach (var item in paginatedProd)
+            {
+                var likesForProd = await _likeService.GetLikeByIdProd(item.IdProd);
+                int likeCount = likesForProd?.Count() ?? 0;
+                item.NbLike = likeCount;
+                var liked = await _likeService.GetLikeByIdUserIdProd(iduser, item.IdProd);
+                if (liked != null)
+                {
+                    item.IdLike = liked.IdLP;
+                }
+
+                var wishList = await _wishListService.GetWishListByIdUserIdProd(iduser, item.IdProd);
+                if (wishList != null)
+                {
+                    item.IdWishList = wishList.Idwish;
+                }
+
+            }
+
+            return Ok(new
+            {
+                TotalItems = totalItems,
+                PageNumber = filter.PageNumber,
+                PageSize = pageSize,
+                products = paginatedProd
+            });
+        }
     }
 
 }

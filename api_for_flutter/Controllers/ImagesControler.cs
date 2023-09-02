@@ -133,5 +133,37 @@ namespace api_for_flutter.Controllers
                 return NotFound();
             }
         }
+
+
+        // Product Images Controlelr EndPoint 
+
+        [HttpPut("updateProductImages")]
+        public async  Task<IActionResult> updateProductimage(int idImage, int idProduct)
+        {
+            var updatedImage = await _imageService.UpdateProductImages(idProduct, idImage);
+            if (updatedImage != null)
+            {
+                return Ok(updatedImage);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+        [HttpDelete("deleteProductImages")]
+        public IActionResult DeleteProductImage(int idProduct)
+        {
+            var res = _imageService.DeleteProductImages(idProduct);
+            return Ok(res);
+        }
+
+        [HttpGet("getAllProductImages")]
+        public IActionResult GetAllImagesByProduct(int idProduct)
+        {
+            var res = _imageService.GetImagesByIdProduct(idProduct);
+            return Ok(res);
+        }
     }
 }

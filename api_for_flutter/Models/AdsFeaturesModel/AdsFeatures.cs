@@ -11,11 +11,8 @@ namespace api_for_flutter.Models.AdsFeaturesModel
         [Key]
         public int IdAF { get; set; }
         public int? IdAds { get; set; }
-       /* [ForeignKey("IdAds")]
-        public Ads? Ads { get; set; }*/
         public int? IdDeals { get; set; }
-       /* [ForeignKey("IdDeals")]
-        public Deals? Deals { get; set; }*/
+        public int? IdProduct { get; set; }
         public int? IdFeature { get; set; }
        [ForeignKey("IdFeature")]
         public f.Features? features { get; set; }

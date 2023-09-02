@@ -1,4 +1,5 @@
 ﻿using api_for_flutter.Data;
+using api_for_flutter.Models.ImagesModel;
 using api_for_flutter.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,14 @@ namespace api_for_flutter.Services.UserServices
             if (user == null)
             {
                 return null;
+            }
+            if (user.ImageUrl != null)
+            {
+                string imagePath = Path.Combine(_configuration["AssetsFolder:UsersFolder"].ToString(), user.ImageUrl);
+                if (File.Exists(imagePath))
+                {
+                    File.Delete(imagePath);
+                }
             }
 
             var imgUrl = SaveImageAndGetUrl(img);

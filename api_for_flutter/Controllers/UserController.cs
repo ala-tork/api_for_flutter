@@ -279,6 +279,10 @@ namespace CoolApi.Controllers
             {
                 existingUser.country = updatedUser.country;
             }
+            if (updatedUser.NbDiamon!=null)
+            {
+                existingUser.NbDiamon = updatedUser.NbDiamon;
+            }
 
             // Save changes to the database
             _cxt.SaveChanges();

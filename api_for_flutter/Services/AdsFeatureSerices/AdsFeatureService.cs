@@ -20,6 +20,7 @@ namespace api_for_flutter.Services.AdsFeatureSerices
             {
                 IdAds = features.IdAds,
                 IdDeals = features.IdDeals,
+                IdProduct = features.IdProduct,
                 IdFeature = features.IdFeature,
                 IdFeaturesValues = features.IdFeaturesValues,
                 MyValues = features.MyValues,
@@ -63,6 +64,7 @@ namespace api_for_flutter.Services.AdsFeatureSerices
                 
                 existingFeatures.IdAds = features.IdAds;
                 existingFeatures.IdDeals = features.IdDeals;
+                existingFeatures.IdProduct = features.IdProduct;
                 existingFeatures.IdFeature = features.IdFeature;
                 existingFeatures.IdFeaturesValues = features.IdFeaturesValues;
                 existingFeatures.MyValues = features.MyValues;
@@ -109,6 +111,53 @@ namespace api_for_flutter.Services.AdsFeatureSerices
 
                 //existingFeatures.IdAds = features.IdAds;
                 existingFeatures.IdDeals = features.IdDeals;
+                existingFeatures.IdProduct = features.IdProduct;
+                existingFeatures.IdFeature = features.IdFeature;
+                existingFeatures.IdFeaturesValues = features.IdFeaturesValues;
+                existingFeatures.MyValues = features.MyValues;
+                existingFeatures.Active = features.Active;
+
+                await _dbContext.SaveChangesAsync();
+            }
+
+            return existingFeatures;
+        }
+
+
+        /**      Product      */
+        public async Task<List<AdsFeatures>> GetAllProductFeatures(int idProduct)
+        {
+            var res = await _dbContext.AdsFeatures.Where(af => af.IdProduct == idProduct)
+                        .Include(af => af.features)
+                        .Include(af => af.FeaturesValues)
+                        .ToListAsync();
+            return res;
+        }
+
+        public async Task<List<AdsFeatures>> DeleteProductFeatures(int idProduct)
+        {
+            var dealsFeaturesToDelete = await _dbContext.AdsFeatures
+                .Where(af => af.IdProduct == idProduct)
+                .ToListAsync();
+
+            if (dealsFeaturesToDelete.Count > 0)
+            {
+                _dbContext.AdsFeatures.RemoveRange(dealsFeaturesToDelete);
+                await _dbContext.SaveChangesAsync();
+            }
+
+            return dealsFeaturesToDelete;
+        }
+
+        public async Task<AdsFeatures> UpdateProductFeatures(CreateAdsFeature features, int idProduct)
+        {
+            var existingFeatures = await _dbContext.AdsFeatures.FindAsync(idProduct);
+
+            if (existingFeatures != null)
+            {
+                //existingFeatures.IdAds = features.IdAds;
+                //existingFeatures.IdDeals = features.IdDeals;
+                existingFeatures.IdProduct = features.IdProduct;
                 existingFeatures.IdFeature = features.IdFeature;
                 existingFeatures.IdFeaturesValues = features.IdFeaturesValues;
                 existingFeatures.MyValues = features.MyValues;

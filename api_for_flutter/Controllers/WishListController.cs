@@ -61,6 +61,8 @@ namespace api_for_flutter.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
         [HttpGet("GEtWishListByUser/{iduser}")]
         public async Task<IActionResult> GEtWishListByUser(int iduser, int page =0, int pageSize =4)
         {
@@ -78,6 +80,8 @@ namespace api_for_flutter.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
 
         [HttpGet("WishlistByUser_ad")]
         public async Task<IActionResult> GetWishListByIdUserIdAd([FromQuery] int userId, [FromQuery] int adId)
@@ -102,6 +106,24 @@ namespace api_for_flutter.Controllers
             try
             {
                 var wishList = await _wishListService.GetWishListByIdUserIdDeal(userId, dealId);
+                if (wishList == null)
+                    return NotFound();
+
+                return Ok(wishList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("WishlistByUser_product")]
+        public async Task<IActionResult> GetWishListByIdUserIdProduct([FromQuery] int userId, [FromQuery] int idprod)
+        {
+            try
+            {
+                var wishList = await _wishListService.GetWishListByIdUserIdProd(userId, idprod);
                 if (wishList == null)
                     return NotFound();
 

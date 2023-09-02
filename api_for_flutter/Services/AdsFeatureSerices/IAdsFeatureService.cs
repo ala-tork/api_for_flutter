@@ -15,5 +15,10 @@ namespace api_for_flutter.Services.AdsFeatureSerices
         Task<List<AdsFeatures>> DeleteDealsFeatures(int idDeals);
         Task<AdsFeatures> UpdateDealsFeatures(CreateAdsFeature features, int idDeals);
 
+        //Product Functions 
+        Task<List<AdsFeatures>> GetAllProductFeatures(int idProduct);
+        Task<List<AdsFeatures>> DeleteProductFeatures(int idProduct);
+        Task<AdsFeatures> UpdateProductFeatures(CreateAdsFeature features, int idProduct);
+
     }
 }

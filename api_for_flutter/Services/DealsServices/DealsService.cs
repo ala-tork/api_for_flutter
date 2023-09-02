@@ -81,7 +81,7 @@ namespace api_for_flutter.Services.DealsServices
 
         public int NbrDealsByIdUser(int iduser)
         {
-            return _context.Deals.Count(d => d.IdUser == iduser && d.Active == 1);
+            return _context.Deals.Count(d => d.IdUser == iduser );
         }
 
         public List<Deals> ShowMore(int page = 0)
@@ -96,7 +96,7 @@ namespace api_for_flutter.Services.DealsServices
             //const int pageSize = 4; 
             var skip = page * pageSize;
             return _context.Deals
-                .Where(d => d.IdUser == iduser && d.Active == 1)
+                .Where(d => d.IdUser == iduser)
                 .Skip(skip)
                 .Take(pageSize)
                 .ToList();

@@ -118,7 +118,6 @@ namespace api_for_flutter.Services.AdsServices
             var query = _context.Ads.AsQueryable();
 
             var ads = query.Where(a => a.IdUser == iduser)
-                .Where(a=>a.Active == 1)
                .OrderBy(a => a.IdAds)
                .Skip(page * pageSize)
                .Take(pageSize)

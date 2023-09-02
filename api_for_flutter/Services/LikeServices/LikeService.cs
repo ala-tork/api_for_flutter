@@ -84,6 +84,13 @@ namespace api_for_flutter.Services.LikeServices
             { return l; }
             return null;
         }
+        public async Task<List<Like>?> GetLikeByIdProd(int IdProd)
+        {
+            var l = await _dbcontext.Likes.Where(l => l.IdProd == IdProd).ToListAsync();
+            if (l != null)
+            { return l; }
+            return null;
+        }
 
         public async Task<Like?> GetLikeByIdUserIdAd(int Iduser,int idAd)
         {
@@ -98,6 +105,15 @@ namespace api_for_flutter.Services.LikeServices
         public async  Task<Like?> GetLikeByIdUserIdDeal(int Iduser, int idDeal)
         {
             var l = await _dbcontext.Likes.FirstOrDefaultAsync(l => l.IdUser == Iduser && l.IdDeal == idDeal);
+            if (l != null)
+            {
+                return l;
+            }
+            return null;
+        }
+        public async Task<Like?> GetLikeByIdUserIdProd(int Iduser, int idProd)
+        {
+            var l = await _dbcontext.Likes.FirstOrDefaultAsync(l => l.IdUser == Iduser && l.IdProd == idProd);
             if (l != null)
             {
                 return l;

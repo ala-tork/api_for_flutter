@@ -1,5 +1,6 @@
 ﻿using api_for_flutter.Models.AdsModels;
 using api_for_flutter.Models.DealsModel;
+using api_for_flutter.Models.ProductModel;
 using api_for_flutter.Models.UserModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,8 @@ namespace api_for_flutter.Models.LikesPublicationModel
         [ForeignKey("IdUser")]
         public User user { get; set; } 
         public int? IdProd { get; set; }
+        [ForeignKey("IdProd")]
+        public Product? product { get; set; }
         public int? IdAd { get; set; }
         [ForeignKey("IdAd")]
         public Ads? Ads { get; set; }

@@ -11,7 +11,7 @@ namespace api_for_flutter.Models.WinnersModel
         public int IdWinner { get; set; }
         public int IdPrize { get; set; }
         [ForeignKey("IdPrize")]
-        public Prizes Prizes { get; set; }
+        public Prizes prizes { get; set; }
         public string DateWin { get; set; }
         public int IdUser { get; set; }
         [ForeignKey("IdUser")]

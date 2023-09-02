@@ -97,5 +97,39 @@ namespace api_for_flutter.Controllers
             }
             return BadRequest("we cant update this Deals feature");
         }
+
+
+        // Product Endpoints
+
+        [HttpGet("GetAllProductFeatures")]
+        public async Task<IActionResult> GetAllProductFeatures(int idProduct)
+        {
+            var res = await _service.GetAllProductFeatures(idProduct);
+            return Ok(res);
+        }
+
+        [HttpDelete("DeleteProductFeatures")]
+        public async Task<IActionResult> DeleteProductFeatures(int idProduct)
+        {
+            var res = await _service.DeleteProductFeatures(idProduct);
+            if (res.Count == 0)
+            {
+                return BadRequest("Product Features Not Found");
+            }
+
+            return Ok(res);
+        }
+
+        [HttpPut("UpdateProductFeatures")]
+        public async Task<IActionResult> UpdateProductFeatures(CreateAdsFeature features, int idProduct)
+        {
+            var res = await _service.UpdateProductFeatures(features, idProduct);
+            if (res == null)
+            {
+                return BadRequest("Unable to update Product Features");
+            }
+
+            return Ok(res);
+        }
     }
 }

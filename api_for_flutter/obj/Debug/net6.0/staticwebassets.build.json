@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "06wfv3ZByZ5Y5fXNqTV82XAalCnlidDsBtj1mLClqKE=",
+  "Hash": "RICe9Bs/vWFuImwAQtkn5Yos1MC0St6nceGy7/Q+NwY=",
   "Source": "api_for_flutter",
   "BasePath": "_content/api_for_flutter",
   "Mode": "Default",
@@ -136,6 +136,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\78746cce-5d7d-4e96-a0d4-9b14924ad380_test.jpg"
     },
     {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\79816885-1394-4ced-a98c-3f5507378186_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/79816885-1394-4ced-a98c-3f5507378186_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\79816885-1394-4ced-a98c-3f5507378186_test.jpg"
+    },
+    {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\8b2348dd-d05a-446d-8aed-676b919da91d_msi.webp",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
@@ -221,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\9428ed0b-9542-4265-806d-dd19b425da06_pcprotable.jpg"
     },
     {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\aa537edb-958c-43a9-9307-9482641cdb1c_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/aa537edb-958c-43a9-9307-9482641cdb1c_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\aa537edb-958c-43a9-9307-9482641cdb1c_test.jpg"
+    },
+    {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\b1e3480a-c708-44ac-8934-c93b6b8c732a_Torkhani_Ala.jpg",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
@@ -253,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\images\\be52797a-12b6-4229-b5fb-c5e90e080bb6_test.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\cfca6d76-1cde-4ea1-9238-9d7809f0365c_test.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/cfca6d76-1cde-4ea1-9238-9d7809f0365c_test.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\cfca6d76-1cde-4ea1-9238-9d7809f0365c_test.jpg"
     },
     {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\dab012c1-2120-4176-8c4e-758c201daf45_deals3.png",
@@ -323,6 +374,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\images\\f9c078dd-96c1-400c-bf01-8b68fdc57326_pc.jpeg"
     },
     {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\users\\17ca89ae-ff56-42d6-b615-b99e72afc5ca_Torkhani_Ala.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/users/17ca89ae-ff56-42d6-b615-b99e72afc5ca_Torkhani_Ala.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\users\\17ca89ae-ff56-42d6-b615-b99e72afc5ca_Torkhani_Ala.jpg"
+    },
+    {
       "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\users\\5aa8b413-2fdf-4477-b934-f353ad63e4ca_Torkhani_Ala.jpg",
       "SourceId": "api_for_flutter",
       "SourceType": "Discovered",
@@ -355,6 +423,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\images\\users\\8fadd4a3-74ef-43bb-b388-01ca78783d98_Torkhani_Ala.jpg"
+    },
+    {
+      "Identity": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\Assets\\images\\users\\d463e79c-2427-46ec-8ff0-667b6a118b63_Torkhani_Ala.jpg",
+      "SourceId": "api_for_flutter",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work_Space\\.Net_Work_Space\\api_for_flutter\\api_for_flutter\\wwwroot\\",
+      "BasePath": "_content/api_for_flutter",
+      "RelativePath": "Assets/images/users/d463e79c-2427-46ec-8ff0-667b6a118b63_Torkhani_Ala.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\images\\users\\d463e79c-2427-46ec-8ff0-667b6a118b63_Torkhani_Ala.jpg"
     }
   ]
 }

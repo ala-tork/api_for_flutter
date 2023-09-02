@@ -45,6 +45,9 @@ namespace api_for_flutter.Migrations
                     b.Property<int?>("IdFeaturesValues")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdProduct")
+                        .HasColumnType("int");
+
                     b.Property<string>("MyValues")
                         .HasColumnType("nvarchar(max)");
 
@@ -494,6 +497,8 @@ namespace api_for_flutter.Migrations
 
                     b.HasIndex("IdPrize");
 
+                    b.HasIndex("IdProduct");
+
                     b.ToTable("Images");
                 });
 
@@ -526,9 +531,64 @@ namespace api_for_flutter.Migrations
 
                     b.HasIndex("IdDeal");
 
+                    b.HasIndex("IdProd");
+
                     b.HasIndex("IdUser");
 
                     b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.MagasinModel.Magasin", b =>
+                {
+                    b.Property<int>("IdMagasin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMagasin"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ActivitySection")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCountry")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdMagasin");
+
+                    b.ToTable("Magasins");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.PrizeModel.Prizes", b =>
@@ -567,6 +627,211 @@ namespace api_for_flutter.Migrations
                     b.ToTable("Prizes");
                 });
 
+            modelBuilder.Entity("api_for_flutter.Models.ProductModel.Product", b =>
+                {
+                    b.Property<int>("IdProd")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProd"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CodeBar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodeProduct")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatePublication")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdBoost")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdBrand")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCateg")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCountry")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdMagasin")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdPricesDelevery")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdPrize")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePrincipale")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Qte")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Tax")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdProd");
+
+                    b.HasIndex("IdBoost");
+
+                    b.HasIndex("IdBrand");
+
+                    b.HasIndex("IdCateg");
+
+                    b.HasIndex("IdCity");
+
+                    b.HasIndex("IdCountry");
+
+                    b.HasIndex("IdPrize");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("api_for_flutter.Models.SettingModel.Setting", b =>
+                {
+                    b.Property<int>("IdSetting")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSetting"));
+
+                    b.Property<bool?>("BoostAds")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("BuyPoints")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("CreationRatingPreviewForStandardAccount")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("MinimumAddAnnoncePoints")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinimumAddDealsPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinimumAddProductsPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinimumSubscriptionDuration")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("ModeMagasinAndDeals")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NbDiamondAds")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NbDiamondDeals")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NbDiamondProduct")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("PROEntrepriseMonthPrice")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("PROUserMonthPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PolicyRetour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("PremiumAccount")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PrivacyPolicy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("RatingPreview")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("StandardAccountMaxAnnonces")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StandardAccountMaxDeals")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StandardAccountMaxPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StandardAccountMaxProduts")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("StandardAchatCommision")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("StandardAnnonceMaxDuration")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StandardDealsMaxDuration")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StandardMaxMagasin")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TermsAndConditions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("TransfertCommision")
+                        .HasColumnType("float");
+
+                    b.Property<bool?>("UpgradeAccount")
+                        .HasColumnType("bit");
+
+                    b.HasKey("IdSetting");
+
+                    b.ToTable("Setting");
+                });
+
             modelBuilder.Entity("api_for_flutter.Models.UserModel.User", b =>
                 {
                     b.Property<int>("Id")
@@ -581,6 +846,9 @@ namespace api_for_flutter.Migrations
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NbDiamon")
+                        .HasColumnType("int");
 
                     b.Property<string>("RefreshToken")
                         .IsRequired()
@@ -602,6 +870,15 @@ namespace api_for_flutter.Migrations
                     b.Property<string>("firstname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isPremium")
+                        .HasColumnType("int");
+
+                    b.Property<int>("isPro")
+                        .HasColumnType("int");
+
+                    b.Property<int>("isverified")
+                        .HasColumnType("int");
 
                     b.Property<string>("lastname")
                         .IsRequired()
@@ -681,6 +958,8 @@ namespace api_for_flutter.Migrations
                     b.HasIndex("IdAd");
 
                     b.HasIndex("IdDeal");
+
+                    b.HasIndex("IdProd");
 
                     b.HasIndex("IdUser");
 
@@ -861,11 +1140,17 @@ namespace api_for_flutter.Migrations
                         .WithMany()
                         .HasForeignKey("IdPrize");
 
+                    b.HasOne("api_for_flutter.Models.ProductModel.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("IdProduct");
+
                     b.Navigation("Ads");
 
                     b.Navigation("Deals");
 
                     b.Navigation("Prizes");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("api_for_flutter.Models.LikesPublicationModel.Like", b =>
@@ -878,6 +1163,10 @@ namespace api_for_flutter.Migrations
                         .WithMany()
                         .HasForeignKey("IdDeal");
 
+                    b.HasOne("api_for_flutter.Models.ProductModel.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("IdProd");
+
                     b.HasOne("api_for_flutter.Models.UserModel.User", "user")
                         .WithMany()
                         .HasForeignKey("IdUser")
@@ -887,6 +1176,8 @@ namespace api_for_flutter.Migrations
                     b.Navigation("Ads");
 
                     b.Navigation("Deals");
+
+                    b.Navigation("product");
 
                     b.Navigation("user");
                 });
@@ -900,9 +1191,65 @@ namespace api_for_flutter.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("api_for_flutter.Models.ProductModel.Product", b =>
+                {
+                    b.HasOne("api_for_flutter.Models.BootsModel.Boosts", "Boosts")
+                        .WithMany()
+                        .HasForeignKey("IdBoost");
+
+                    b.HasOne("api_for_flutter.Models.BrandsModel.Brands", "Brands")
+                        .WithMany()
+                        .HasForeignKey("IdBrand")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("api_for_flutter.Models.CategoryModels.Categories", "Categories")
+                        .WithMany()
+                        .HasForeignKey("IdCateg")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("api_for_flutter.Models.CitiesModels.Cities", "Cities")
+                        .WithMany()
+                        .HasForeignKey("IdCity")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("api_for_flutter.Models.CountriesModel.Countries", "Countries")
+                        .WithMany()
+                        .HasForeignKey("IdCountry")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("api_for_flutter.Models.PrizeModel.Prizes", "Prizes")
+                        .WithMany()
+                        .HasForeignKey("IdPrize")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("api_for_flutter.Models.UserModel.User", "user")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Boosts");
+
+                    b.Navigation("Brands");
+
+                    b.Navigation("Categories");
+
+                    b.Navigation("Cities");
+
+                    b.Navigation("Countries");
+
+                    b.Navigation("Prizes");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("api_for_flutter.Models.WinnersModel.Winners", b =>
                 {
-                    b.HasOne("api_for_flutter.Models.PrizeModel.Prizes", "Prizes")
+                    b.HasOne("api_for_flutter.Models.PrizeModel.Prizes", "prizes")
                         .WithMany()
                         .HasForeignKey("IdPrize")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -914,7 +1261,7 @@ namespace api_for_flutter.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Prizes");
+                    b.Navigation("prizes");
 
                     b.Navigation("user");
                 });
@@ -929,11 +1276,17 @@ namespace api_for_flutter.Migrations
                         .WithMany()
                         .HasForeignKey("IdDeal");
 
+                    b.HasOne("api_for_flutter.Models.ProductModel.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("IdProd");
+
                     b.HasOne("api_for_flutter.Models.UserModel.User", "user")
                         .WithMany()
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("ads");
 
