@@ -116,6 +116,7 @@ public class ProductService : IProductService
             product.Reference = prod.Reference;
             product.Title = prod.Title;
             product.Description = prod.Description;
+            product.Discount = prod.Discount;
             product.Details = prod.Details;
             product.DatePublication = DateTime.Now.ToString("yyyy-MM-dd");
             product.Qte = prod.Qte;

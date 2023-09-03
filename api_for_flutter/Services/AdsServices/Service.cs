@@ -131,7 +131,7 @@ namespace api_for_flutter.Services.AdsServices
 
         public int NbrAdsByIdUser( int iduser)
         {
-            var res = _context.Ads.Where(a => a.IdUser == iduser).Where(a=>a.Active==1).Count();
+            var res = _context.Ads.Where(a => a.IdUser == iduser).Count();
             return res;
         }
 
